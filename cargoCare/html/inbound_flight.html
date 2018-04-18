@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>进港-进港作业航班</title>
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/css.css">
+  <link rel="stylesheet" href="../css/semantic.min.css">
+  <link rel="stylesheet" href="../svg/font.css">
+</head>
+
+<body>
+  <div class="inbound_flight wym_container">
+    <div>
+      <div class="w_filter">
+        <div class="ui bottom attached tab active" data-tab="first">
+          <form class="ui form main_search">
+            <div class="ui mini form padding10-20">
+              <div class="row">
+                <div class="four fields">
+                  <div class=" four wide field">
+                    <label>航班号</label>
+                    <div class="two fields relative">
+                      <div class="six wide field paddingLeft0">
+                        <input type="text" placeholder="2字码" class="flight_code_2 toUpper">
+                      </div>
+                      <span class="dateSymbol left37">-</span>
+                      <div class="ten wide field paddingRight0">
+                        <input type="text" placeholder="4位数字" class="flight_code_4">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="four wide field">
+                    <label>作业日期</label>
+                    <input type="text" placeholder="航班作业日期 格式为20170101" class="plan_fry_date">
+                  </div>
+                  <div class="eight wide field">
+                    <label>到达时间范围</label>
+                    <div class="two fields relative">
+                      <div class="eight wide field paddingLeft0">
+                        <input type="text" placeholder="起止时间 格式为0000" class="billing_time_start">
+                      </div>
+                      <span class="dateSymbol">-</span>
+                      <div class="eight wide field paddingRight0">
+                        <input type="text" placeholder="终止时间 格式为0000" class="billing_time_end">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="four fields">
+                  <div class="four wide field">
+                    <label>机型</label>
+                    <input type="text" placeholder="航班飞机的型号" class="model_code toUpper">
+                  </div>
+                  <div class="four wide field">
+                    <label>出发站</label>
+                    <input type="text" placeholder="出发站" class="departure_name">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- 按钮 开始-->
+            <div class="padding5030">
+              <div class="w_setbtn">
+                <button class="ui medium yellow button btn_search">查询</button>
+                <button class="ui medium red button btn_clear">清空</button>
+              </div>
+            </div>
+            <!-- 按钮 结束-->
+          </form>
+        </div>
+      </div>
+    </div>
+    <!--table-->
+    <div class="overflowXAuto marginbottom45">
+      <table class="ui celled table selled w_table structured">
+        <thead>
+          <tr>
+            <th>序号</th>
+            <th>航班号</th>
+            <th>始发日</th>
+            <th>到达日</th>
+            <th>STA</th>
+            <th>ETA</th>
+            <th>ATA</th>
+            <th>机型</th>
+            <th>机号</th>
+            <th>始发站</th>
+            <th>加班</th>
+            <th>国内</th>
+            <th>PUB</th>
+            <th>CAH</th>
+            <th>FFM</th>
+            <th>MAN</th>
+            <th>COM</th>
+            <th>REP</th>
+            <th>FDL</th>
+          </tr>
+        </thead>
+        <tbody class="dingcang inflight_main_table">
+          <!--循环数据-->
+        </tbody>
+      </table>
+    </div>
+    <!-- page -->
+    <div class="pageWrap">
+      <div class="pageBox">
+
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+<script src="../js/jquery.js"></script>
+<script src="../js/semantic.min.js"></script>
+<script src="../js/layer/layer.js"></script>
+<script src="../js/js.js"></script>
+<script src="../js/more.btn.js"></script>
+
+<script src="../js/utils/utils.js"></script>
+<script src="../js/utils/LXHR.js"></script>
+<script src="../js/component/pagination.js"></script>
+<script src="../js/inflight_management/inbound_flight.js"></script>

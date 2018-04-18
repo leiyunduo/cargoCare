@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>航班信息-航班信息查询</title>
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/css.css">
+  <link rel="stylesheet" href="../css/semantic.min.css">
+  <link rel="stylesheet" href="../svg/font.css">
+  <style type="text/css">
+    .flight_information {
+      text-align: center;
+    }
+
+    .flight_information span {
+      margin-left: 15px;
+    }
+
+    .flight_moved_information {
+      position: fixed;
+      width: calc(100% - 1px);
+      background: rgba(255, 255, 255, 1);
+      height: 100%;
+      z-index: 100;
+      padding: 0 30px;
+      display: none;
+      left: 0;
+      top: 0;
+      border-right: 1px solid #DDDDDD;
+      border-left: 1px solid #DDDDDD;
+    }
+
+    .stations {
+      margin: 30px 20px;
+      /*width: 100%;*/
+      /*height:80px;*/
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .station {
+      width: 100px;
+    }
+
+    .station span {
+      /*width: 100%;*/
+      display: block;
+      text-align: center;
+    }
+
+    .blue_circle {
+      border-radius: 50%;
+      border: 5px solid #00bbff;
+      width: 30px;
+      height: 30px;
+      margin: 0 auto 10px;
+      background-color: #fff;
+    }
+
+    .flight_line {
+      width: 90%;
+      height: 5px;
+      position: absolute;
+      top: 16%;
+      left: 5%;
+      background-color: #00bbff;
+      z-index: -1;
+    }
+
+    .bluePlane {
+      position: absolute;
+      left: 30px;
+      top: -30px;
+    }
+
+    .block40px{
+      line-height: 60px;
+      background-color: rgba(0, 0, 0, 0);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wym_container">
+    <div>
+      <div class="w_filter">
+        <div class="ui bottom attached tab active" data-tab="first">
+          <form class="ui form main_page">
+            <div class="ui mini form padding10-20">
+              <div class="row">
+                <div class="four fields">
+                  <div class="four wide field">
+                    <label>航班号</label>
+                    <div class="two fields relative">
+                      <div class="six wide field paddingLeft0">
+                        <input type="text" placeholder="2位航空公司代码" class="flight_no_2 toUpper">
+                      </div>
+                      <span class="dateSymbol left37">-</span>
+                      <div class="ten wide field paddingRight0">
+                        <input type="text" placeholder="4位数字" class="flight_no_4">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="three wide field">
+                    <label>始发站</label>
+                    <input type="text" placeholder="始发站" class="departure_name">
+                  </div>
+                  <div class="three wide field">
+                    <label>目的站</label>
+                    <input type="text" placeholder="目的站" class="destination_name">
+                  </div>
+                  <div class="six wide field">
+                    <label>日期</label>
+                    <div class="two fields relative">
+                      <div class="eight wide field paddingLeft0">
+                        <input type="text" placeholder="出发日期 格式为20170101" class="plan_fry_time_start">
+                      </div>
+                      <span class="dateSymbol left37">-</span>
+                      <div class="eight wide field paddingRight0">
+                        <input type="text" placeholder="到达日期 格式为20170101" class="plan_fry_time_end">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="row">
+                <div class="four fields">
+                  <div class="four wide field">
+                    <label>出发日期</label>
+                    <input type="text" placeholder="出发日期 格式为20170101" class="plan_fry_time_start">
+                  </div>
+                  <div class="four wide field">
+                    <label>到达日期</label>
+                    <input type="text" placeholder="到达日期 格式为20170101" class="plan_fry_time_end">
+                  </div>
+                  <div class="four wide field ">
+                    <label>状态</label>
+                    <div class="ui dropdown selection state">
+                        <input type="hidden">
+                        <div class="default text">所有</div>
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                          <option class="item" data-value="">全部</option>
+                          <option class="item" data-value="0">计划</option>
+                          <option class="item" data-value="1">起飞</option>
+                          <option class="item" data-value="2">到达</option>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+            </div>
+            <!-- 按钮 -->
+            <div class="padding5030">
+              <div class="w_setbtn">
+                <button class="ui medium yellow button search">查询</button>
+                <button class="ui medium orange button">清空</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!--table-->
+    <div class="overflowXAuto marginbottom45">
+      <table class="ui celled table selled w_table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>操作</th>
+            <th>航班号</th>
+            <th>始发站</th>
+            <th>目的站</th>
+            <th>计划起飞</th>
+            <th>实际起飞</th>
+            <th>计划到达</th>
+            <th>实际到达</th>
+            <!-- <th>状态</th> -->
+          </tr>
+        </thead>
+        <tbody class="flight_info_table">
+          <!--循环数据-->
+        </tbody>
+      </table>
+      <div class="pageWrap">
+        <div class="pageBox">
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="flight_moved_information">
+    <div class="two_level_menu_head">
+      <span class="title">南方航空 NS5199</span>
+      <span id="close_two_level_page" class="two_level_menu_head_close icon-cancel-circle"></span>
+    </div>
+    <div class="padding5030 borderBottom">
+      <div class="flight_information flight_info_detail">
+        <span>全程<i>1168</i>公里</span> <span><i>1</i>小时<i>58</i>分钟</span> <span>历史准点率：<i>22.58</i>%</span> <span>机型：<i>A321</i></span><span>机龄<i>0.2</i>年</span>
+      </div>
+      <div class="stations relative stations_info">
+        <div class="flight_line"></div>
+        <div class="station">
+          <span class="blue_circle"></span>
+          <span>首都国际</span>
+          <span>PEK</span>
+        </div>
+        <div class="station">
+          <span class="blue_circle"></span>
+          <span>杭州萧山</span>
+          <span>HGH</span>
+        </div>
+        <div class="station">
+          <span class="blue_circle"></span>
+          <span>广州白云</span>
+          <span>CAN</span>
+        </div>
+        <div class="bluePlane">
+          <img src="../images/bluePlane.png">
+        </div>
+      </div>
+      <table class="ui teal table">
+        <thead>
+          <tr class="detail_table_head">
+            <th>
+              <div class="overflowHidden flex">
+                <div class="block40px">
+                  晴
+                </div>
+                <div class="marginTop10 marginLeft20">
+                  <div>晴 20° /30°</div>
+                  <div>小面积延误</div>
+                </div>
+              </div>
+            </th>
+            <th>
+              <div class="overflowHidden flex">
+                <div class="block40px">
+                  多云
+                </div>
+                <div class="marginTop10 marginLeft20">
+                  <div>晴 20° /30°</div>
+                  <div>小面积延误</div>
+                </div>
+              </div>
+            </th>
+            <th>
+              <div class="overflowHidden flex">
+                <div class="block40px">
+                  小雨
+                </div>
+                <div class="marginTop10 marginLeft20">
+                  <div>晴 20° /30°</div>
+                  <div>流量正常</div>
+                </div>
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody class="detail_table_body">
+          <tr>
+            <td>计划起飞：8：00</td>
+            <td>计划起飞：8：00</td>
+            <td>计划起飞：8：00</td>
+          </tr>
+          <tr>
+            <td>预计起飞：8：00</td>
+            <td>预计起飞：8：00</td>
+            <td>预计起飞：8：00</td>
+          </tr>
+          <tr>
+            <td>实际起飞：8：00</td>
+            <td>实际起飞：8：00</td>
+            <td>实际起飞：8：00</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</body>
+
+</html>
+<script src="../js/jquery.js"></script>
+<script src="../js/semantic.min.js"></script>
+<script src="../js/js.js"></script>
+<script src="../js/more.btn.js"></script>
+<script src="../js/utils/LXHR.js"></script>
+<script src="../js/utils/utils.js"></script>
+<script src="../js/component/pagination.js"></script>
+<script src="../js/flight_number_inquiries/flight_number_inquiries.js"></script>
+

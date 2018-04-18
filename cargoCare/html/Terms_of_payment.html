@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>基础数据-通用数据字典-付款方式</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/css.css">
+    <link rel="stylesheet" href="../css/semantic.min.css">
+    <link rel="stylesheet" href="../svg/font.css">
+    <link rel="stylesheet" href="../css/zTree/jcsj.css">
+</head>
+<body>
+<div class="wym_container">
+    <div>
+        <div class="w_filter">
+            <form class="ui form main_search overflowHideen" action="http://47.93.90.229/test/def/basic/util/exportXls"
+                  method="post">
+                <div class="ui bottom attached tab active" data-tab="first">
+                    <div style="display: none">
+                        文件名:<input type="text" value="付款方式" name="fileName">
+                        表名:<input type="text" value="lxtd_base_pay_method" name="tableName">
+                    </div>
+
+                    <div class="ui mini form whitebg padding10-20 search_items">
+                        <div class="row searchrow">
+                            <div class="four fields fieldsContent">
+                                <div class="four wide field">
+                                    <label>付款方式</label>
+                                    <input type="text" placeholder="付款方式">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 按钮 -->
+                    <div class="padding5030">
+                        <div class="w_setbtn">
+                            <button class="ui medium yellow button submit btn-search">查询</button>
+                            <button class="ui medium orange button btn-clear">重置</button>
+                        </div>
+                        <div class="w_setbtn floatLeft">
+                            <button class="ui medium orange button import_settings">导入相关</button>
+                            <input type="submit" style="height:36px;!important;" class="ui" id="export" value="导出">
+                            <button class="ui medium green button edit">批量编辑</button>
+                            <button class="ui medium blue button ">添加</button>
+                            <button class="ui medium red button shan">删除</button>
+                            <!--export-->
+                        </div>
+                    </div>
+            </form>
+        </div>
+    </div>
+    <!--table-->
+    <!--table-->
+    <div class="overflowXAuto marginbottom45">
+        <table class="ui celled table selled w_table structured" id="tableExcel">
+            <thead>
+            <tr class="show_items">
+                <th></th>
+                <th>序号</th>
+                <th>操作</th>
+                <th>付款方式</th>
+            </tr>
+            </thead>
+            <tbody class="main_table">
+            <!--循环数据-->
+            </tbody>
+        </table>
+    </div>
+    <!--分页-->
+    <div class="pageWarp">
+        <div class="pageBox"></div>
+    </div>
+    <!--test开始 -->
+    <div class="ui dimmer modals page transition hidden import_settings_wrap">
+        <div class="ui first coupled modal transition hidden import_settings_wrap_first_modal">
+            <div class="actions flexEnd positionR">
+                <input type="file" class="changeFileSelf" id="upfile" name="file" style=" margin-left:55px">
+                <button class="ui twitter button changeFileBtn">
+                    <i class="file excel outline icon"></i>
+                    请选择文件
+                </button>
+            <span id="close_two_level_page"
+                  class="two_level_menu_head_close close_first_modal_btn icon-cancel-circle"></span>
+            </div>
+            <div class="image content overflowXAuto marginbottom45" style="height:300px;">
+
+                <table class="ui inverted teal table">
+                    <thead>
+                    <tr>
+                        <th>Excel表头名称</th>
+                        <th>显示名称</th>
+                        <th>Excel对应英文名</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody class="overflow-y fileMsg">
+                    </tbody>
+                </table>
+            </div>
+            <div class="actions">
+                <div class="ui form flexCenter">
+                    <div class="inline fields">
+                        <label>请选择导入Excel表格的方法</label>
+                        <div class="field">
+                            <div class="ui radio checkbox ch1">
+                                <input type="radio" name="frequency">
+                                <label>覆盖</label>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui radio checkbox ch2">
+                                <input type="radio" name="frequency">
+                                <label>追加</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="actions flexEnd positionR">
+                <div class="ui primary button update" id="upJQuery">导入</div>
+            </div>
+        </div>
+    </div>
+    <!--test结束 -->
+</div>
+<!--批量编辑-->
+<div class="edit_data">
+    <div class="two_level_menu_head margintop30">
+        <span class="tit">批量编辑</span>
+        <span id="close_two_level_page" class="two_level_menu_head_close icon-cancel-circle"></span>
+    </div>
+    <form class="ui form">
+        <!--<div class="ui form padding10-20 borderBottom edit_items">
+            <div class="row">
+                <div class="two fields">
+                    <div class="four wide field">
+                        <label>订舱号</label>
+                        <input type="text" class="booknum" name="booking_no" placeholder="订舱号(请输6位数字)">
+                    </div>
+                    <div class="four wide field">
+                        <label>航班号</label>
+                        <div class="two fields relative">
+                            <div class="six wide field paddingLeft0">
+                                <input type="text" class="twofly" placeholder="二字代码">
+                            </div>
+                            <span class="dateSymbol left37">-</span>
+                            <div class="ten wide field paddingRight0">
+                                <input type="text" class="flynum" placeholder="四位数字">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="four wide field">
+                        <label>航班日期</label>
+                        <input type="text" class="fry_date_" placeholder="航班日期 格式为20170101">
+                    </div>
+                    <div class="four wide field">
+                        <label>订舱客户</label>
+                        <input type="text" class="booking_customer_code">
+                    </div>
+                </div>
+            </div>
+        </div>-->
+        <div class="ui mini form whitebg padding10-20 edit_items">
+            <div class="row searchrow">
+                <div class="four fields fieldsContent">
+                    <div class="four wide field">
+                        <label>始发站</label>
+                        <input type="text" class="departure_code" placeholder="始发站">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="padding5030">
+            <div class="flexCenter">
+                <button class="ui medium orange button luru">提交</button>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+</body>
+</html>
+<script src="../js/jquery.js"></script>
+<script src="../js/semantic.min.js"></script>
+<script src="../js/layer/layer.js"></script>
+<script src="../js/js.js"></script>
+
+<script src="../js/utils/LXHR.js"></script>
+<script src="../js/utils/utils.js"></script>
+<script src="../js/utils/store.js"></script>
+<script src="../js/component/pagination.js"></script>
+
+<script src="../js/toolfn/tollfun.js"></script>
+<script src="../js/excel/excel.js"></script>
+<script src="../js/Terms_of_payment/Terms_of_payment.js"></script>
+

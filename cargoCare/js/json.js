@@ -1,0 +1,92 @@
+data = [{
+    id: "1",
+    number: "22225874139",
+    ing: "内部返单",
+    who: "管理员",
+    starttime: "2017-01-05-00:00:00",
+    papering: "未用",
+    whodo: "管理员",
+    intime: "2017-01-04-14:58:03"
+}, {
+    id: "2",
+    number: "22225874139",
+    ing: "内部返单",
+    who: " ",
+    starttime: " ",
+    papering: "已用",
+    whodo: "管理员",
+    intime: "2017-01-05-10:29:11"
+}, {
+    id: "3",
+    number: "12419940605",
+    ing: "库存",
+    who: "管理员",
+    starttime: "2017-01-05-00:00:00",
+    papering: "已用",
+    whodo: "管理员",
+    intime: "2017-01-04-14:58:03"
+}, {
+    id: "4",
+    number: "00020170105",
+    ing: "库存",
+    who: "管理员",
+    starttime: "2017-01-05-00:00:00",
+    papering: "已用",
+    whodo: "管理员",
+    intime: "2017-01-04-15:11:03",
+}, {
+    id: "5",
+    number: "fen12345678",
+    ing: "内部返单",
+    who: " ",
+    starttime: " ",
+    papering: "作废",
+    whodo: "管理员",
+    intime: "2017-01-08-17:35:16",
+}, {
+    id: "6",
+    number: "10112345678",
+    ing: "库存",
+    who: " ",
+    starttime: " ",
+    papering: "未用",
+    whodo: "管理员",
+    intime: "2017-02-08-15:02:53",
+}, {
+    id: "7",
+    number: "SJW85685665",
+    ing: "库存",
+    who: "管理员",
+    starttime: "2017-01-10-00:00:00",
+    papering: "已用",
+    whodo: "管理员",
+    intime: "2017-01-03-10:48:05",
+}, {
+    id: "8",
+    number: "10200000009",
+    ing: "库存",
+    who: " ",
+    starttime: " ",
+    papering: "未用",
+    whodo: "管理员",
+    intime: "2017-01-06-11:39:03",
+}, {
+    id: "9",
+    number: "10200000010",
+    ing: "库存",
+    who: "管理员",
+    starttime: "2017-01-09-00:00:00",
+    papering:"未用",
+    whodo:"管理员",
+    intime:"2017-01-06-11:39:13"
+}, {
+    id: "10",
+    number: "SJW10559632",
+    ing: "库存",
+    who: "管理员",
+    starttime: "2017-01-04-00:00:00",
+    papering:"未用",
+    whodo:"管理员",
+    intime:"2017-01-04-15:33:18"
+}]
+

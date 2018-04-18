@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>综合查询报表-出发货量分析-统计类-出发货量走势(按日期)</title>
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/css.css">
+  <link rel="stylesheet" href="../css/semantic.min.css">
+  <link rel="stylesheet" href="../svg/font.css">
+  <style type="text/css">
+    #echarts {
+      height: calc(100% - 243px);
+      width: 100%;
+      border-top: 1px solid #ddd;
+    }
+
+    .setCheckItem {
+      margin: 8px 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wym_container">
+    <div>
+      <div class="w_filter">
+        <div class="ui bottom attached tab active" data-tab="first">
+          <form class="ui form overflowHideen main_search">
+            <div class="ui mini form whitebg padding10-20">
+              <div class="row">
+                <div class="four fields">
+                  <div class="eight wide field">
+                    <label>起止日期</label>
+                    <div class="two fields relative">
+                      <div class="eight wide field paddingLeft0">
+                        <input type="text" placeholder="起始日期" class="day_start">
+                      </div>
+                      <span class="dateSymbol">-</span>
+                      <div class="eight wide field paddingRight0">
+                        <input type="text" placeholder="结束日期" class="day_end">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- 按钮 -->
+            <div class="padding5030">
+              <!-- <div class="w_setbtn floatLeft">
+                <button class="ui Medium green button set_search">设置查询条件</button>
+                <button class="ui Medium green button set_show">设置数据显示项</button>
+              </div> -->
+              <div class="w_setbtn">
+                <button class="ui medium yellow button btn_search">查询</button>
+                <button class="ui medium orange button btn_clear">清空</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="echarts">
+      <!-- <div id="main" style="width:900px;height:600px;"></div> -->
+    </div>
+
+  </div>
+
+  </div>
+</body>
+
+</html>
+<script src="../js/jquery.js"></script>
+<script src="../js/semantic.min.js"></script>
+<script src="../js/layer/layer.js"></script>
+<script src="../js/js.js"></script>
+<script src="../js/more.btn.js"></script>
+<script src="../js/json.js"></script>
+<script src="../js/echarts.min.js"></script>
+
+<script src="../js/utils/LXHR.js"></script>
+<script src="../js/utils/utils.js"></script>
+<script src="../js/utils/store.js"></script>
+
+<script src="../js/report_forms/config.js"></script>
+<script src="../js/report_forms/echarts.js"></script>
+

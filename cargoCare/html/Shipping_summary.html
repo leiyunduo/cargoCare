@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>综合查询报表-出发货量分析-统计类-出发货量汇总</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/css.css">
+    <link rel="stylesheet" href="../css/semantic.min.css">
+    <link rel="stylesheet" href="../svg/font.css">
+</head>
+<body>
+<div class="wym_container">
+    <div>
+        <div class="w_filter">
+            <div class="ui bottom attached tab active" data-tab="first">
+                <form class="ui form">
+                    <div class="ui mini form padding10-20">
+                        <div class="row">
+                            <div class="four fields">
+                                <div class="four wide field">
+                                    <label>发货人</label>
+                                    <input type="text" class="sender" placeholder="发货人">
+                                </div>
+                                <div class="four wide field ">
+                                    <label>汇总依据</label>
+                                    <div class="ui dropdown selection">
+                                        <input type="hidden" value="">
+                                        <div class="default text">全部</div>
+                                        <i class="dropdown icon"></i>
+                                        <div class="menu">
+                                            <option class="item" data-value="0">全部</option>
+                                            <option class="item" data-value="1">按航线</option>
+                                            <option class="item" data-value="2">按日期</option>
+                                            <option class="item" data-value="3">按时间</option>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="eight wide field">
+                                    <label>起止日期</label>
+                                    <div class="two fields relative">
+                                        <div class="eight wide field paddingLeft0">
+                                            <input type="text" class="billing_time_start" placeholder="起始日期 格式为20170101">
+                                        </div>
+                                        <span class="dateSymbol">-</span>
+                                        <div class="eight wide field paddingRight0">
+                                            <input type="text" class="billing_time_end" placeholder="结束日期 格式为20170101">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 左按钮 -->
+                    <div class="padding5030">
+                        <div class="w_setbtn floatLeft">
+                            <button class="ui Medium blue button set_search">设置查询条件</button>
+                            <button class="ui Medium blue button set_show">设置数据显示项</button>
+                        </div>
+                        <div class="w_setbtn">
+                            <button class="ui medium yellow button btn_search">查询</button>
+                            <button class="ui medium orange button btn_clear">清空</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--table-->
+    <table class="ui celled table selled w_table">
+        <thead>
+        <tr>
+            <th></th>
+            <th>航线</th>
+            <th>电子产品</th>
+            <th>纺织品</th>
+            <th>公务货</th>
+            <th>果蔬</th>
+            <th>快件</th>
+            <th>皮革</th>
+            <th>普货</th>
+            <th>鲜易符</th>
+            <th>药品</th>
+            <th>邮件</th>
+        </tr>
+        </thead>
+        <tbody class="table-list">
+        <!--循环数据-->
+        </tbody>
+    </table>
+    <!-- page -->
+    <div class="pageWrap">
+        <div class="pageBox">
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+<script src="../js/jquery.js"></script>
+<script src="../js/semantic.min.js"></script>
+<script src="../js/js.js"></script>
+<script src="../js/layer/layer.js"></script>
+<script src="../js/utils/LXHR.js"></script>
+<script src="../js/jcsj/alert.js"></script>
+<!--
+<script src="../js/component/pagination.js"></script>
+<script src="../js/utils/LXHR.js"></script>
+<script src="../js/layer/layer.js"></script>
+<script src="../js/toolfn/tollfun.js"></script>
+<script src="../js/Shipping_summary/Shipping_summary.js"></script>-->

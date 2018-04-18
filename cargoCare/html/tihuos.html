@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>综合查询报表-提货-提货生产报表—收益类</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/css.css">
+    <link rel="stylesheet" href="../css/semantic.min.css">
+    <link rel="stylesheet" href="../svg/font.css">
+</head>
+<body>
+<div class="wym_container">
+    <div>
+        <div class="w_filter">
+            <div class="ui bottom attached tab active" data-tab="first">
+                <form class="ui form">
+                    <div class="ui mini form padding10-20">
+                        <div class="row">
+                            <div class="four fields">
+                                <div class="four wide field ">
+                                    <label>查询依据</label>
+                                    <div class="ui dropdown selection">
+                                        <input type="hidden" value="0">
+                                        <div class="default text">全部</div>
+                                        <i class="dropdown icon"></i>
+                                        <div class="menu">
+                                            <option class="item" data-value="0">全部</option>
+                                            <option class="item" data-value="1">查询依据1</option>
+                                            <option class="item" data-value="2">查询依据2</option>
+                                            <option class="item" data-value="3">查询依据3</option>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="four wide field ">
+                                    <label>提货地点</label>
+                                    <div class="ui dropdown selection">
+                                        <input type="hidden" value="0">
+                                        <div class="default text">全部</div>
+                                        <i class="dropdown icon"></i>
+                                        <div class="menu">
+                                            <option class="item" data-value="0">全部</option>
+                                            <option class="item" data-value="1">提货地点1</option>
+                                            <option class="item" data-value="2">提货地点2</option>
+                                            <option class="item" data-value="3">提货地点3</option>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="four wide field ">
+                                    <label>国内/国际货</label>
+                                    <div class="ui dropdown selection">
+                                        <input type="hidden" value="0">
+                                        <div class="default text">全部</div>
+                                        <i class="dropdown icon"></i>
+                                        <div class="menu">
+                                            <option class="item" data-value="0">全部</option>
+                                            <option class="item" data-value="1">国内</option>
+                                            <option class="item" data-value="2">国际</option>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="four wide field ">
+                                    <label>开票人</label>
+                                    <div class="ui dropdown selection">
+                                        <input type="hidden" value="0">
+                                        <div class="default text">全部</div>
+                                        <i class="dropdown icon"></i>
+                                        <div class="menu">
+                                            <option class="item" data-value="0">全部</option>
+                                            <option class="item" data-value="1">开票人1</option>
+                                            <option class="item" data-value="2">开票人2</option>
+                                            <option class="item" data-value="3">开票人3</option>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="four fields">
+                                <div class="four wide field ">
+                                    <label>单据类型</label>
+                                    <div class="ui dropdown selection">
+                                        <input type="hidden" value="0">
+                                        <div class="default text">全部</div>
+                                        <i class="dropdown icon"></i>
+                                        <div class="menu">
+                                            <option class="item" data-value="0">全部</option>
+                                            <option class="item" data-value="1">单据类型1</option>
+                                            <option class="item" data-value="2">单据类型2</option>
+                                            <option class="item" data-value="3">单据类型3</option>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="four wide field ">
+                                    <label>运输方式</label>
+                                    <div class="ui dropdown selection">
+                                        <input type="hidden" value="0">
+                                        <div class="default text">全部</div>
+                                        <i class="dropdown icon"></i>
+                                        <div class="menu">
+                                            <option class="item" data-value="0">全部</option>
+                                            <option class="item" data-value="1">航空运输</option>
+                                            <option class="item" data-value="2">公路运输</option>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 这个页面还缺少 按时间 按单号 查询   是单选模式 -->
+                        </div>
+                        <div class="row">
+                        <div class="four fields">
+                          <div class="eight wide field">
+                            <label>按时间</label>
+                            <div class="two fields relative">
+                              <div class="eight wide field">
+                                <input type="text" placeholder="起始时间 格式为20170101">
+                              </div>
+                              <span class="dateSymbol">-</span>
+                              <div class="eight wide field">
+                                <input type="text" placeholder="结束时间 格式为20170101">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="eight wide field">
+                            <label>按单号</label>
+                            <div class="two fields relative">
+                              <div class="eight wide field">
+                                <input type="text" placeholder="三字代码">
+                              </div>
+                              <span class="dateSymbol">-</span>
+                              <div class="eight wide field">
+                                <input type="text" placeholder="八位数字" >
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                            <!-- 这个页面还缺少 按时间 按单号 查询   是单选模式 -->
+                        </div>
+                    </div>
+                    <!-- 左按钮 -->
+
+                    <div class="padding5030">
+                        <div class="w_setbtn floatLeft">
+                            <button class="ui Medium blue button set_search">设置查询条件</button>
+                            <button class="ui Medium blue button set_show">设置数据显示项</button>
+                        </div>
+                        <div class="w_setbtn">
+                            <button class="ui medium yellow button btn_search">查询</button>
+                            <button class="ui medium orange button btn_clear">清空</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--table-->
+    <table class="ui celled table selled w_table">
+        <thead>
+        <tr>
+            <th>主单号</th>
+            <th>运输方式</th>
+            <th>起点</th>
+            <th>件数</th>
+            <th>重量</th>
+            <th>发货人</th>
+            <th>应收派送费</th>
+            <th>应收提货费</th>
+            <th>应收中转费</th>
+            <th>应收其费用</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!--循环数据-->
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
+<script src="../js/jquery.js"></script>
+<script src="../js/semantic.min.js"></script>
+<script src="../js/js.js"></script>
+<script src="../js/layer/layer.js"></script>
+<script src="../js/utils/LXHR.js"></script>
+<script src="../js/jcsj/alert.js"></script>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="./js/echarts.min.js"></script>
+</head>
+<body>
+	<div id="main" style="width:900px;height:600px;"></div>
+	<script type="text/javascript">
+		// 基于准备好的dom,初始化echarts实例
+		var myChart=echarts.init(document.getElementById('main'))
+		//指定图标的配置项和实例	
+		var option={
+			//标题
+			title:{
+				text:'echarts 入门示例'
+			},
+			toolbox:{
+				show:true,
+				feature:{
+					saveAsImage:{
+						show:true
+					}
+				}
+			},
+			// 图裂
+			legend:{
+				data:['销量','产量']
+			},
+			//x轴
+			xAxis:{
+				data:['衬衫','羊毛衫','雪纺衫','裤子','高跟鞋','袜子'],
+				name:'日期',
+				nameLocation:'middle'
+			},
+			yAxis:{
+				// data:['衬衫','羊毛衫','雪纺衫','裤子','高跟鞋','袜子']
+				name:'货量(吨)',
+				nameLocation:'middle',
+				nameGap:'30'
+			},
+			//数据
+			series:[{
+				name:'销量',
+				type:'bar',//bar代表直方图
+				data:[5,20,36,10,10,20]
+			},{
+				name:'产量',
+				type:'line',//line代表折线图
+				data:[7,30,50,11,40,80]
+			}]
+		}
+
+		// 使用刚指定的配置项和数据来显示图表
+		myChart.setOption(option);
+	</script>
+</body>
+</html>

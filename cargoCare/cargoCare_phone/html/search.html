@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <!--H5页面窗口自动调整到设备宽度，并禁止用户缩放页面-->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <!--（部分安卓手机的UC浏览器写完以后还是可以放大缩小）
+    忽略将页面中的数字识别为电话号码-->
+    <!--<meta name="format-detection" content="telephone=no" />（ios上会明显 有时候会把数字当成电话号码）-->
+    <!--忽略Android平台中对邮箱地址的识别-->
+    <meta name="format-detection" content="email=no" />
+    <!-- viewport模板-->
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <!--webkit表单元素的默认外观怎么重置-->
+    <style>
+        .css{-webkit-appearance:none;} （ios上的下拉框会有圆角，所以要写border-radius:0）
+    </style>
+
+    <link rel="stylesheet" href="../css/search.css"/>
+    <link rel="stylesheet" href="../css/reset.css"/>
+    <link rel="stylesheet" href="../../css/semantic.min.css">
+    <title>搜索</title>
+</head>
+<body class="css">
+<span class="back"><</span>
+<div class="header">
+    查询详情
+</div>
+<!--1分单-->
+<div class="contents sub">
+    <div class="filter">
+       <!-- <div>
+            分单号　<input type="text" class="order" readOnly="true">
+            主单号　<input type="text" class="main" readOnly="true">
+        </div>
+        <br>
+        <div>
+            提货电话<input type="text" class="tel" readOnly="true">
+            开票日期<input type="text" class="time" readOnly="true">
+        </div>-->
+    </div>
+    <table class="search">
+    </table>
+
+    <table class="flight">
+    </table>
+</div>
+<div class="footer">
+    <div><a href="">历史查询</a></div>
+    <div><a href="">联系我们</a></div>
+</div>
+</body>
+</html>
+<script src="../js/rem.js"></script>
+<script src="../js/jquery.js"></script>
+<script src="../js/search.js"></script>

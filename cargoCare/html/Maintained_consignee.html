@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>综合查询/报表-收益类-到达航班收益分析-已维护收货人收益分析</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/css.css">
+    <link rel="stylesheet" href="../css/semantic.min.css">
+    <link rel="stylesheet" href="../svg/font.css">
+</head>
+<body>
+  <div class="wym_container">
+    <div>
+      <div class="w_filter">
+        <div class="ui bottom attached tab active" data-tab="first">
+          <form class="ui form">
+            <div class="ui mini form padding10-20">
+              <div class="row">
+                <div class="four fields">
+                  <div class="eight wide field">
+                    <label>承运人</label>
+                    <div class="two fields relative">
+                      <div class="eight wide field ">
+                        <div class="ui dropdown selection">
+                            <input type="hidden" value="0">
+                            <div class="default text">全部</div>
+                            <i class="dropdown icon"></i>
+                            <div class="menu">
+                                <option class="item" data-value="0">全部</option>
+                                <option class="item" data-value="1">承运人1</option>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="eight wide field">
+                        <input type="text">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="four wide field ">
+                    <label>收货人</label>
+                    <div class="ui dropdown selection">
+                        <input type="hidden" value="0">
+                        <div class="default text">全部</div>
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <option class="item" data-value="0">全部</option>
+                            <option class="item" data-value="1">收货人1</option>
+                            <option class="item" data-value="2">收货人2</option>
+                            <option class="item" data-value="3">收货人3</option>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="four wide field ">
+                    <label>起点</label>
+                    <div class="ui dropdown selection">
+                        <input type="hidden" value="0">
+                        <div class="default text">全部</div>
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <option class="item" data-value="0">全部</option>
+                            <option class="item" data-value="1">起点1</option>
+                            <option class="item" data-value="2">起点2</option>
+                            <option class="item" data-value="3">起点3</option>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="four fields">
+                <div class="four wide field ">
+                    <label>货物类别</label>
+                    <div class="ui dropdown selection">
+                        <input type="hidden" value="0">
+                        <div class="default text">全部</div>
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <option class="item" data-value="0">全部</option>
+                            <option class="item" data-value="1">货物类别1</option>
+                            <option class="item" data-value="2">货物类别2</option>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+         <!-- 按钮 -->
+
+              <div class="padding5030">
+                  <div class="w_setbtn floatLeft">
+                      <button class="ui Medium blue button set_search">设置查询条件</button>
+                      <button class="ui Medium blue button set_show">设置数据显示项</button>
+                  </div>
+                  <div class="w_setbtn">
+                      <button class="ui medium yellow button btn_search">查询</button>
+                      <button class="ui medium orange button btn_clear">清空</button>
+                  </div>
+              </div>
+
+          </form>
+        </div>
+      </div>   
+    </div>
+                <!--table-->    
+    <table class="ui celled table selled w_table">
+        <thead>
+          <tr>
+              <th></th>
+              <th>月份</th>
+              <th>代码</th>
+              <th>收货人</th>
+              <th>本期计重</th>
+              <th>环比计重</th>
+              <th>同比计重</th>
+              <th>本期应收</th>          
+              <th>环比应收</th>
+              <th>同比应收</th>
+              <th>本期差额</th>
+          </tr>
+        </thead>
+        <tbody>
+        <!--循环数据-->
+        </tbody>
+    </table>
+  </div>
+
+</div>
+</body>
+</html>
+<script src="../js/jquery.js"></script>
+<script src="../js/semantic.min.js"></script>
+<script src="../js/js.js"></script>
+<script src="../js/layer/layer.js"></script>
+<script src="../js/utils/LXHR.js"></script>
+<script src="../js/jcsj/alert.js"></script>

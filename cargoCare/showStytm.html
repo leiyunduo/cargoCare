@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="航空，票证，管理" />
+    <meta name="description" content="该网站主要实现票证管理界面，semantic" />
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/css.css">
+    <link rel="stylesheet" href="css/semantic.min.css">
+    <link rel="stylesheet" href="svg/font.css">
+    <title>Cargo Care 货运代理人系统</title>
+    <style>
+        .sing_out {
+            position: fixed;
+            z-index: 99999;
+            top: 15px;
+            right: 30px;
+            cursor: pointer;
+            color: #fff;
+            font-size: 26px;
+        }
+    </style>
+</head>
+<body style="background-color: #4b4b4b !important;">
+    <div class="sing_out" title="退出登录"><i class="sign out icon"></i></div>
+<!-- 右键的div开始 -->
+    <div class="W_qq">
+        
+    </div>
+<!-- 右键的div结束-->
+        <!--遮罩开始-->
+    <div class="wym_wrap_black"></div>
+    <!--遮罩结束-->
+    <!-- 三级菜单开始 -->
+    <div class="wym overflowAuto">
+
+        <div class="W_user">
+            <div class="logoBox"></div>
+            <!-- <img src="images/logo111.png"> -->
+<!--             <div class="W_user_right">
+                <h4>admin(管理员)</h4>
+                <span>市内营业部</span>
+            </div> -->
+        </div>
+        <h3 class="W_nav_q">导航菜单</h3>
+        <!-- 左边菜单栏 -->
+        <div class="list">
+            <ul class="yiji">
+
+            </ul>
+        </div>
+        <!-- 左边菜单栏End -->
+    </div>
+
+    <!-- 三级菜单结束 -->
+    <div class="wrap"> 
+        <div class="wym_container_list">
+             <!-- 选项卡开始 -->
+            <span class="Q_W_span_left Q_W_span"><<</span>
+            <span class="Q_W_span_right Q_W_span">>></span>
+            <div class="con_header ">
+                <div class="con_header_children ui tabular menu tabPadding tabMove" style="margin: 0px; height: 100%;">
+                    
+                </div>
+            </div>
+             <!-- 选项卡 结束-->
+            <iframe src="./html/index_show.html" class="main" name="ifm" id="route_iframe"></iframe>
+            <div class="firstPage">
+                <a href="javascript:;" class="zhu">
+                    <span class="navLeft"></span>
+                    <span class="navRight">
+                        <span class="navRightContent">
+                            <span class="navRightTopText marginBottom20">国内收货主单管理</span>
+                            <span class="navRightBottomText">收货-国内-收货主单管理</span>
+                        </span>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!--初始页面开始-->
+    <div class="wym_wrap">
+        <div class="W_header">
+           <button class="W_button"> Menu </button>
+        </div>
+        <div class="W_body">
+            <div class="version">
+                <a class="ui black version label" href="javascript:;">
+                    1.0.1
+                </a>
+            </div>
+            <div class="M_font"><img  src="images/system.png"></div>
+            <div class="M_button">
+              <div class="M_button_content">Get Started</div>
+              <div>帮助手册</div>
+            </div>
+        </div>
+    </div>
+    <!--初始页面结束-->
+    <!-- 菜单按钮 -->
+    <div class="W_nav">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <!-- 菜单按钮 -->
+</body>
+</html>
+
+<script src="js/jquery.js"></script>
+<script src="js/semantic.min.js"></script>
+<script src="js/layer/layer.js"></script>
+
+<script src="js/utils/LXHR.js"></script>
+<script src="js/utils/store.js"></script>
+<script src="js/utils/utils.js"></script>
+
+<script src="js/topNav.js"></script>
+<script src="js/data.js"></script>
+<script src="js/js.js"></script>
+<script src="js/json.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+    let navsData=[
+        {   
+            id: 1002,
+            images:'chart1.gif',
+            navRightTopText:'收货国内主单管理',
+            navRightBottomText:'收货-国内-收货主单管理',
+            alt:'receiving_middle_management',
+            tabName:'收货主单管理',
+        },
+        {   
+            id: 1003,
+            images:'chart2.gif',
+            navRightTopText:'收货国内分单管理',
+            navRightBottomText:'收货-国内-收货分单管理',
+            alt:'receiving_middle_sub_management',
+            tabName:'收货分单管理',
+        },
+        {   
+            id: 1006,
+            images:'chart3.gif',
+            navRightTopText:'邮件管理',
+            navRightBottomText:'快件-国内-邮件管理',
+            alt:'mail_management',
+            tabName:'邮件管理',
+        },
+        {   
+            id: 1011,
+            images:'chart4.gif',
+            navRightTopText:'按作业航班订舱管理',
+            navRightBottomText:'出港-订舱-按作业航班订舱',
+            alt:'work_flight_booking11',
+            tabName:'按作业航班订舱',
+        },
+        {
+            id: 1014,
+            images:'chart5.gif',
+            navRightTopText:'配载订舱管理',
+            navRightBottomText:'出港-配载-配载订舱',
+            alt:'booking',
+            tabName:'配载订舱',
+        },
+        {   
+            id: 1007,
+            images:'chart6.gif',
+            navRightTopText:'民航快递管理',
+            navRightBottomText:'快件-国内-民航快递管理',
+            alt:'domestic_civilAviation_fastMail',
+            tabName:'民航快递管理',
+            
+        },
+        {   
+            id: 1023,
+            images:'chart7.gif',
+            navRightTopText:'进港主单管理',
+            navRightBottomText:'进港-国内-进港主单管理',
+            alt:'inflight_main_management',
+            tabName:'进港主单管理',
+        }
+    ]
+    
+    let formNavData = data => {
+        data.forEach(item1 => {
+            let isShow = authList.some(item2 => {
+                return item1.id === item2.id
+            })
+        
+            if(isShow) {
+                item1.show = true
+            }
+        })
+    }
+
+    formNavData(navsData)
+
+    function creatFirstPageNav(navsData){
+        let navContent=''
+        navsData.forEach((item, i) => {
+            if(item.show) {
+                navContent+=`<a href="javascript:;" class="zhu" alt="${item.alt}" data-name="${item.tabName}">
+                    <span class="navLeft" style="background-image:url(./images/${item.images})"></span>
+                    <span class="navRight">
+                        <span class="navRightContent">
+                            <span class="navRightTopText marginBottom20">${item.navRightTopText}</span>
+                            <span class="navRightBottomText">${item.navRightBottomText}</span>
+                        </span>
+                    </span>
+                </a>`
+            }
+        })
+        return navContent
+    }
+    $('.firstPage').html(creatFirstPageNav(navsData));
+
+    $('.firstPage a').on('click',function(){
+        $('.W_nav').addClass('active')
+        $('.wym').removeClass('active');
+        $('.wrap').show().addClass('active')
+        $('.firstPage').hide()
+        $('.main').attr('src','html/'+$(this).attr('alt')+'.html')
+        let navItem = {
+            name: $(this).data('name'),
+            alt: $(this).attr('alt'),
+            active: 1,
+        }
+        open_or_change(navItem)
+    })
+})
+</script>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>综合查询报表-收货-航空公司销售报表</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/css.css">
+    <link rel="stylesheet" href="../css/semantic.min.css">
+    <link rel="stylesheet" href="../svg/font.css">
+</head>
+<body>
+<div class="wym_container">
+    <div>
+        <div class="w_filter">
+            <div class="ui bottom attached tab active" data-tab="first">
+                <form class="ui form">
+                    <div class="ui mini form padding10-20">
+                        <div class="row">
+                            <div class="four fields">
+                                <div class="four wide field ">
+                                    <label>结算单位</label>
+                                    <div class="ui dropdown selection">
+                                        <input type="hidden" value="0">
+                                        <div class="default text">全部</div>
+                                        <i class="dropdown icon"></i>
+                                        <div class="menu">
+                                            <option class="item" data-value="0">全部</option>
+                                            <option class="item" data-value="1">春秋航空公司</option>
+                                            <option class="item" data-value="2">长龙航空公司</option>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="four wide field ">
+                                    <label>票证代码</label>
+                                    <div class="ui dropdown selection">
+                                        <input type="hidden" value="0">
+                                        <div class="default text">全部</div>
+                                        <i class="dropdown icon"></i>
+                                        <div class="menu">
+                                            <option class="item" data-value="0">全部</option>
+                                            <option class="item" data-value="1">080</option>
+                                            <option class="item" data-value="2">090</option>
+                                            <option class="item" data-value="3">191</option>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="four wide field ">
+                                    <label>数量</label>
+                                    <input type="text" placeholder="数量">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 这个页面还缺少 按时间 按单号 查询   是单选模式 -->
+
+                        <div class="row">
+                        <div class="four fields">
+                          <div class="eight wide field">
+                            <label>按时间</label>
+                            <div class="two fields relative">
+                              <div class="eight wide field">
+                                <input type="text" placeholder="起始时间">
+                              </div>
+                              <span class="dateSymbol">-</span>
+                              <div class="eight wide field">
+                                <input type="text" placeholder="结束时间">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="eight wide field">
+                            <label>按单号</label>
+                            <div class="two fields relative">
+                              <div class="eight wide field">
+                                <input type="text" placeholder="三字码" >
+                              </div>
+                              <span class="dateSymbol">-</span>
+                              <div class="eight wide field">
+                                <input type="text" placeholder="八位数字" >
+                              </div>
+                            </div>
+                          </div>
+                          </div>
+                            <!-- 这个页面还缺少 按时间 按单号 查询   是单选模式 -->
+                        </div>
+                    </div>
+                    <!-- 左按钮 -->
+                    <div class="padding5030">
+                        <div class="w_setbtn floatLeft">
+                            <button class="ui Medium blue button set_search">设置查询条件</button>
+                            <button class="ui Medium blue button set_show">设置数据显示项</button>
+                        </div>
+                        <div class="w_setbtn">
+                            <button class="ui medium yellow button btn_search">查询</button>
+                            <button class="ui medium orange button btn_clear">清空</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--table-->
+    <table class="ui celled table selled w_table">
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>单号</th>
+            <th>起点</th>
+            <th>终点</th>
+            <th>件数</th>
+            <th>实重</th>
+            <th>计重</th>
+            <th>品名</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!--循环数据-->
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
+<script src="../js/jquery.js"></script>
+<script src="../js/semantic.min.js"></script>
+<script src="../js/js.js"></script>
+<script src="../js/layer/layer.js"></script>
+<script src="../js/utils/LXHR.js"></script>
+<script src="../js/jcsj/alert.js"></script>

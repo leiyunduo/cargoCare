@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>基础数据-通用数据字典-预付款管理-预付款扣款记录</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/css.css">
+    <link rel="stylesheet" href="../css/semantic.min.css">
+    <link rel="stylesheet" href="../svg/font.css">
+</head>
+<body>
+  <div class="wym_container">
+    <div>
+      <div class="w_filter">
+        <div class="ui bottom attached tab active" data-tab="first">
+          <form class="ui form">
+            <div class="ui mini form padding10-20">
+              <div class="row">
+                <div class="four fields">
+                  <div class="four wide field">
+                    <label>所属部门</label>
+                    <input type="text" placeholder="所属部门">
+                  </div>
+                  <div class="four wide field">
+                    <label>所属公司</label>
+                    <input type="text" placeholder="所属公司">
+                  </div>
+                </div>
+              </div>
+            </div> 
+            <div class="padding5030">
+              <div class="w_setbtn">
+                <button class="ui medium yellow button submit">查询</button>
+                <button class="ui medium orange button">重置</button>
+              </div>
+              <div class="w_setbtn floatLeft">
+                <button class="ui medium orange button">录入</button>
+                <button class="ui medium orange button">查看</button>
+                <button class="ui medium teal button">编辑</button>
+                <button class="ui medium red button">删除</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>   
+    </div>
+    <!--table-->
+    <div class="overflowXAuto">
+      <table class="ui celled table selled w_table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>所属部门</th>
+            <th>所属公司</th>
+            <th>交易时间</th>
+            <th>transactionAmount</th>
+            <th>0收入1支出扣款时为支出</th>
+            <th>交易单号</th>
+            <th>付款单位</th>
+            <th>交易摘要</th>
+            <th>发货人</th>
+          </tr>
+        </thead>
+        <tbody>
+        <!--循环数据-->
+        </tbody>
+      </table>
+    </div>  
+    <div class="pageWrap">
+      <div class="pageBox">
+        <div class="ui pagination menu">
+          <a class="icon item">
+            首页
+          </a>
+          <a class="icon item">
+            上一页
+          </a>
+          <a class="item">1</a>
+          <a class="item">...</a>
+          <a class="item">2</a>
+          <a class="item">3</a>
+          <a class="item">4</a>
+          <a class="item">...</a>
+          <a class="item">15</a>
+          <a class="icon item">
+            下一页
+          </a>
+          <a class="icon item">
+            尾页
+          </a>
+        </div>
+        <div class="ui pagination menu alignItem">
+          <a class="icon item">
+            跳转到
+          </a>
+          <input type="text" class="width70px height30px item" name="">
+          <a class="icon item">
+            页
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
+<script src="../js/jquery.js"></script>
+<script src="../js/semantic.min.js"></script>
+<script src="../js/js.js"></script>
+<script src="../js/more.btn.js"></script>

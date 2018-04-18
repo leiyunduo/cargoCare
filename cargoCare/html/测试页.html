@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>测试页</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/css.css">
+    <link rel="stylesheet" href="../css/semantic.min.css">
+    <link rel="stylesheet" href="../svg/font.css">
+</head>
+<body>
+  <!-- <input type="text" autocomplete> -->
+<form class="ui form">
+  <div class="two fields">
+    <div class="field error">
+      <label>Integer</label>
+      <input name="integer" type="text" value="101">
+    </div>
+    <div class="field">
+      <label>E-mail</label>
+      <input name="email" type="text" value="jack@foo">
+    </div>
+  </div>
+  <div class="two fields">
+    <div class="field error">
+      <label>Decimal</label>
+      <input name="decimal" type="text" value="1.1.1">
+    </div>
+    <div class="field error">
+      <label>Number</label>
+      <input name="number" type="text" value="+200">
+    </div>
+  </div>
+  <div class="two fields">
+    <div class="field error">
+      <label>URL</label>
+      <input name="url" type="text" value="ww.fakeurl.com">
+    </div>
+    <div class="field error">
+      <label>RegEx</label>
+      <input name="regex" type="text" value="joe">
+    </div>
+  </div>
+  <div class="ui submit button">Submit</div>
+  <div class="ui error message"></div>
+</form>
+</body>
+</html>
+<script src="../js/jquery.js"></script>
+<script src="../js/semantic.min.js"></script>
+<script src="../js/js.js"></script>
+<script src="../js/more.btn.js"></script>
+<script type="text/javascript">
+</script>
+<script type="text/javascript">
+$('.type.example form')
+  .form({
+    on: 'blur',
+    fields: {
+      integer: {
+        identifier  : 'integer',
+        rules: [
+          {
+            type   : 'integer[1..100]',
+            prompt : 'Please enter an integer value'
+          }
+        ]
+      },
+      decimal: {
+        identifier  : 'decimal',
+        rules: [
+          {
+            type   : 'decimal',
+            prompt : 'Please enter a valid decimal'
+          }
+        ]
+      },
+      number: {
+        identifier  : 'number',
+        rules: [
+          {
+            type   : 'number',
+            prompt : 'Please enter a valid number'
+          }
+        ]
+      },
+      email: {
+        identifier  : 'email',
+        rules: [
+          {
+            type   : 'email',
+            prompt : 'Please enter a valid e-mail'
+          }
+        ]
+      },
+      url: {
+        identifier  : 'url',
+        rules: [
+          {
+            type   : 'url',
+            prompt : 'Please enter a url'
+          }
+        ]
+      },
+      regex: {
+        identifier  : 'regex',
+        rules: [
+          {
+            type   : 'regExp[/^[a-z0-9_-]{4,16}$/]',
+            prompt : 'Please enter a 4-16 letter username'
+          }
+        ]
+      }
+    }
+  })
+;
+</script>

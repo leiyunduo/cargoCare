@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>综合查询报表-到达货量分析—统计类-到达货量汇总</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/css.css">
+    <link rel="stylesheet" href="../css/semantic.min.css">
+    <link rel="stylesheet" href="../svg/font.css">
+</head>
+<body>
+    <div class="wym_container">
+        <div>
+            <div class="w_filter">
+                <div class="ui bottom attached tab active" data-tab="first">
+                    <form class="ui form">
+                        <div class="ui mini form padding10-20">
+                            <div class="row">
+                                <div class="four fields">
+                                    <div class="four wide field ">
+                                        <label>汇总依据</label>
+                                        <div class="ui dropdown selection">
+                                            <input type="hidden" value="0">
+                                            <div class="default text">按承运人航班</div>
+                                            <i class="dropdown icon"></i>
+                                            <div class="menu">
+                                                <option class="item" data-value="0">按承运人航班</option>
+                                                <option class="item" data-value="1">汇总依据1</option>
+                                                <option class="item" data-value="2">汇总依据2</option>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="four wide field ">
+                                        <label>关联点</label>
+                                        <div class="ui dropdown selection">
+                                            <input type="hidden" value="0">
+                                            <div class="default text">SJZ/石家庄</div>
+                                            <i class="dropdown icon"></i>
+                                            <div class="menu">
+                                                <option class="item" data-value="0">SJZ/石家庄</option>
+                                                <option class="item" data-value="1">关联点1</option>
+                                                <option class="item" data-value="2">关联点2</option>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="eight wide field">
+                                        <label>起止日期</label>
+                                        <div class="two fields relative">
+                                            <div class="eight wide field paddingLeft0">
+                                                <input type="text" placeholder="起始日期 格式为20170101">
+                                            </div>
+                                            <span class="dateSymbol">-</span>
+                                            <div class="eight wide field paddingRight0">
+                                                <input type="text" placeholder="结束日期 格式为20170101">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 左按钮 -->
+                        <div class="padding5030">
+                            <div class="w_setbtn floatLeft">
+                                <button class="ui Medium blue button set_search">设置查询条件</button>
+                                <button class="ui Medium blue button set_show">设置数据显示项</button>
+                            </div>
+                            <div class="w_setbtn">
+                                <button class="ui medium yellow button btn_search">查询</button>
+                                <button class="ui medium orange button btn_clear">清空</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--table-->
+        <div class="overflowXAuto">
+            <table class="ui celled table selled w_table">
+                <thead>
+                    <tr>
+                        <th>承运人</th>
+                        <th>航班号</th>
+                        <th>2D12/2D18</th>
+                        <th>快件</th>
+                        <th>快件12</th>
+                        <th>快件24/36</th>
+                        <th>普货</th>
+                        <th>小计</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <!--循环数据-->
+                </tbody>
+            </table>
+        </div>
+        <div class="pageWrap">
+          <div class="pageBox">
+            <div class="ui pagination menu">
+              <a class="icon item">首页</a>
+              <a class="icon item">上一页</a>
+              <a class="item">1</a>
+              <a class="item">...</a>
+              <a class="item">2</a>
+              <a class="item">3</a>
+              <a class="item">4</a>
+              <a class="item">...</a>
+              <a class="item">15</a>
+              <a class="icon item">下一页</a>
+              <a class="icon item">尾页</a>
+            </div>
+            <div class="ui pagination menu alignItem">
+              <a class="icon item">跳转到</a>
+              <input type="text" class="width70px height30px item" name="">
+              <a class="icon item">页</a>
+            </div>
+          </div>
+        </div>
+    </div>
+</body>
+</html>
+<script src="../js/jquery.js"></script>
+<script src="../js/semantic.min.js"></script>
+<script src="../js/js.js"></script>
+<script src="../js/layer/layer.js"></script>
+<script src="../js/utils/LXHR.js"></script>
+<script src="../js/jcsj/alert.js"></script>

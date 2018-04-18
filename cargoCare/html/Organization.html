@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>系统管理 组织机构</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/css.css">
+    <link rel="stylesheet" href="../css/semantic.min.css">
+    <link rel="stylesheet" href="../svg/font.css">
+</head>
+<body>
+<div class="wym_container">
+    <div>
+        <div class="w_filter">
+            <div class="ui bottom attached tab active" data-tab="first"><!-- segment-->
+                <form class="ui form">
+                    <div class="ui mini form padding10-20">
+                        <div class="row">
+                            <div class="four fields">
+                                <div class="four wide field">
+                                    <label>组织机构名称</label>
+                                    <input type="text" placeholder="组织机构名称">
+                                </div>
+                                <div class="four wide field" >
+                                    <label>组织机构描述</label>
+                                    <input type="text" placeholder="组织机构描述">
+                                </div>
+                                <div class="four wide field" >
+                                    <label>机构代码</label>
+                                    <input type="text" placeholder="机构代码">
+                                </div>
+                                <div class="four wide field" >
+                                    <label>机构类型</label>
+                                    <input type="text" placeholder="机构类型">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="four fields">
+                                <div class="four wide field">
+                                    <label>图标</label>
+                                    <input type="text" placeholder="图标">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 左按钮 -->
+                    <div class="padding5030">                        <!-- 右按钮 -->
+                        <div class="w_setbtn">
+                            <button class="ui medium yellow button submit">查询</button>
+                            <button class="ui medium orange button">组织机构录入</button>
+                            <button class="ui medium orange button">组织机构编辑</button>
+                        </div>
+                        <div class="w_setbtn floatLeft">
+                            <button class="ui medium red button">删除</button>
+                            <button class="ui medium orange button">查看成员</button>
+                            <button class="ui medium orange button">角色设置</button>
+                        </div>
+
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--table-->
+    <table class="ui celled table selled w_table">
+        <thead>
+        <tr>
+            <th></th>
+            <th>组织机构名称</th>
+            <th>组织机构描述</th>
+            <th>机构代码</th>
+            <th>机构类型</th>
+            <th>图标</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!--循环数据-->
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
+<script src="../js/jquery.js"></script>
+<script src="../js/semantic.min.js"></script>
+<script src="../js/js.js"></script>
+<script src="../js/more.btn.js"></script>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>综合查询报表-出发货量分析-统计类-出发货量走势(按日期)</title>
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/css.css">
+  <link rel="stylesheet" href="../css/semantic.min.css">
+  <link rel="stylesheet" href="../svg/font.css">
+  <style type="text/css">
+    #echarts{
+      height:calc(100% - 243px);
+      width:100%;
+      background: #00e09e;
+      border-top:1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <div class="wym_container">
+    <div>
+      <div class="w_filter">
+        <div class="ui bottom attached tab active" data-tab="first"><!-- segment-->
+          <form class="ui form overflowHideen"><!-- segment-->
+            <div class="ui mini form whitebg padding10-20">
+              <div class="row">
+                <div class="four fields">
+                  <div class="eight wide field">
+                    <label>起止日期</label>
+                    <div class="two fields relative">
+                      <div class="eight wide field paddingLeft0">
+                        <input type="date" name="shipping[first-name]" placeholder="First Name">
+                      </div>
+                      <span class="dateSymbol">-</span>
+                      <div class="eight wide field paddingRight0">
+                        <input type="date" name="shipping[last-name]" placeholder="Last Name">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+         <!-- 按钮 -->
+            <div class="padding5030">
+              <div class="w_setbtn" style="float:left">
+                <button class="ui Medium yellow button">查询</button>
+                <button class="ui Medium green button">打印</button>
+                <button class="ui Medium orange button">预览</button>
+                <button class="ui Medium orange button">停止</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>   
+    </div>
+    <div id="echarts" >
+      <!-- <div id="main" style="width:900px;height:600px;"></div> -->
+    </div>
+
+  </div>
+
+</div>
+</body>
+</html>
+<script src="../js/jquery.js"></script>
+<script src="../js/semantic.min.js"></script>
+<script src="../js/js.js"></script>
+<script src="../js/more.btn.js"></script>
+<script src="../js/json.js"></script>
+<script src="../js/inflight_main_management.js"></script>
+<script src="../js/echarts.min.js"></script>
+<script type="text/javascript">
+// $('.abc').on('blur',function(){
+//   console.log($(this).val())
+// })
+    // 基于准备好的dom,初始化echarts实例
+    var myChart=echarts.init(document.getElementById('echarts'))
+    //指定图标的配置项和实例 
+    var option={
+      //标题
+      title:{
+        show:true,//是否显示标题
+        text:'河北空港物流有限公司出港货量走势图(按日期)',//主标题
+        subtext:'2016/11/26-2016/12/02',//副标题
+        left:'50%',//数字就是像素值, 也可以是center，right，left，也可以使百分数
+        top:'10px',
+        // borderColor:'#00bbff',
+        // borderWidth:5,
+        textStyle: {
+          // color: '#00e09e',//颜色
+          // fontStyle: 'oblique',//斜体
+          fontWeight: 'bolder',//加粗
+          fontFamily: 'sans-serif',//字体
+          fontSize: 18,//字体大小
+        },
+        textAlign:'center',
+        textBaseline: 'top',//标题文本垂直对齐
+        //副标题也有一套对应的 文字样式
+        padding: [5, 20],//内边距
+        itemGap: 5,//主副标题之间的距离
+        // backgroundColor: 'gold',//标题背景色
+        // shadowBlur: 10,//图形阴影的模糊大小
+        // shadowColor: '#00bbff',//图形阴影的颜色
+        shadowOffsetX: 0,//阴影水平方向上的偏移距离
+        shadowOffsetY: 0,//阴影垂直方向上的偏移距离
+      },
+      toolbox:{
+        show:true,//显示工具箱  会显示在右侧
+        top:'20px',
+        right:'20px',
+        feature:{
+          dataView:{
+            show:true//数据视图工具，可以展现当前图表所用的数据，编辑后可以动态更新
+          },
+          restore:{
+            show:true//配置项还原
+          },
+          // dataZoom:{
+          //  show:true//数据区域缩放。目前只支持直角坐标系的缩放。
+          // },
+          saveAsImage:{
+            show:true//保存图片的功能
+          },
+          magicType:{
+            type:['line','bar']//动态类型切换
+          }
+        }
+      },
+      // 弹窗组件
+      tooltip:{
+        trigger:'axis', // item 数据项图形触发，主要在散点图，饼图等无类目轴的图表中使用。
+                // axis 坐标轴触发，主要在柱状图，折线图等会使用类目轴的图表中使用。
+      },
+      // 图裂
+      legend:{
+        data:['销量']
+      },
+      //x轴
+      xAxis:{
+        data:['11月26日','11月27日','11月28日','11月29日','11月30日','11月31日','12月01日','12月02日'],
+        name:'日期',
+        nameLocation:'middle',
+        nameGap:'30'
+      },
+      yAxis:{
+        // data:['衬衫','羊毛衫','雪纺衫','裤子','高跟鞋','袜子']
+        name:'货量(吨)',
+        nameLocation:'middle',
+        nameGap:'30'
+      },
+      //数据
+      series:[
+      // {
+      //  name:'销量',
+      //  type:'bar',//bar代表直方图
+      //  data:[5,20,36,10,10,20],
+      //  markPoint:{
+      //    data:[
+      //      {type:'max',name:'最大值'},
+      //      {type:'min',name:'最小值'}
+      //    ]
+      //  },
+      //  markLine:{
+      //    data:[
+      //      {type:'average',name:'平均值'}
+      //    ]
+      //  }
+      // },
+      {
+        name:'货量(吨)',
+        type:'line',//line代表折线图
+        data:[58,62,59,61,59,58,57,56]
+      }
+      ]
+    }
+
+    // 使用刚指定的配置项和数据来显示图表
+    myChart.setOption(option);
+  </script>

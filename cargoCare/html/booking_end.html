@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>出港-配载-终舱单</title>
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/css.css">
+  <link rel="stylesheet" href="../css/semantic.min.css">
+  <link rel="stylesheet" href="../svg/font.css">
+  <style>
+    .marginbottom60{
+      margin-bottom: 60px;
+    }
+    .checked_wrap{
+      padding: 20px 20px 0 20px;
+    }
+    .page_title {
+      color: #444 !important;
+      padding: 20px 40px !important;
+    }
+    .m_b_30{
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 配载订舱开始 -->
+  <div class="wym_container stowage_booking stowagepage book">
+    <div class="ui dividing header page_title">配载订舱</div>
+    <div>
+      <div class="w_filter">
+        <div class="ui bottom attached tab active" data-tab="first">
+          <form class="ui form">
+            <div class="ui mini form padding10-20">
+              <div class="row">
+                <div class="four fields">
+                  <div class="four wide field">
+                    <label>承运</label>
+                    <input type="text" placeholder="承运" class="carriage_code toUpper">
+                  </div>
+                  <div class="four wide field">
+                    <label>起飞</label>
+                    <input type="text" placeholder="起飞" class="departure_code toUpper">
+                  </div>
+                  <div class="four wide field">
+                    <label>到达</label>
+                    <input type="text" placeholder="到达" class="destination_code toUpper">
+                  </div>
+                  <div class="four wide field ">
+                    <label>货物状态</label>
+                    <div class="ui dropdown selection goods_status">
+                        <input type="hidden">
+                        <div class="default text">所有</div>
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <option class="item" data-value="0">所有</option>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="four fields">
+                  <div class="four wide field ">
+                    <label>货物类型</label>
+                    <div class="ui dropdown selection product_category_code">
+                        <input type="hidden">
+                        <div class="default text">所有</div>
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <option class="item" data-value="0">所有</option>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+         <!-- 按钮 -->
+            <div class="padding5030">
+              <div class="w_setbtn floatLeft">
+                <button class="ui medium orange button stowage_booking_sure_btn">配载订舱</button>
+              </div>
+              <div class="w_setbtn">
+                <button class="ui medium yellow button booking-space-search">查询</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>   
+    </div>
+    <div class="overflowXAuto marginbottom20">
+      <table class="ui celled table selled w_table">
+        <thead>
+          <tr>
+            <th class="checkbox-wrap checkAll">
+              <div class="ui checked checkbox">
+                <input type="checkbox">
+                <label>当前全选</label>
+              </div>
+              <span class="checkbox-mask"></span>
+            </th>
+            <th>序号</th>
+            <th>货物路由</th>
+            <th>运单号</th>
+            <th>批次</th>
+            <th>RDY</th>
+            <th>件数</th>
+            <th>重量</th>
+            <th>体积</th>          
+            <th>起始</th>
+            <th>终到</th>
+            <th>品名</th>
+            <th>拉下</th>
+            <th>特货代码</th>
+            <th>到货时间</th>
+            <th>库位/件数</th>
+          </tr>
+        </thead>
+        <tbody class="stowage_booking_table">
+        <!--循环数据-->
+        </tbody>
+      </table>
+    </div>
+    <div class="pageWrap">
+      <div class="pageBox">
+      </div>
+    </div>
+    <div class="padding5030 m_b_30">
+      <div class="flexCenter">
+        <button class="ui medium orange button gotoList">配载订舱列表</button>
+      </div>
+    </div>
+  </div>
+  <!-- 配载订舱结束 -->
+  <!-- 配载订舱列表开始 -->
+  <div class="wym_container stowage_booking_list stowagepage list">
+    <div class="ui dividing header page_title">配载订舱列表</div>
+    <div>
+      <div class="w_filter">
+        <div class="ui bottom attached tab active" data-tab="first">
+          <form class="ui form">
+            <div class="ui mini form padding10-20">
+              <div class="row">
+                <div class="four fields">
+                  <div class="four wide field" >
+                    <label>航班号</label>
+                    <div class="two fields relative">
+                      <div class="six wide field paddingLeft0">
+                        <input type="text" class="inputMustBgColor flight_no_2 no_2 toUpper" placeholder="二字代码">
+                      </div>
+                      <span class="dateSymbol left37">-</span>
+                      <div class="ten wide field paddingRight0">
+                        <input type="text" class="inputMustBgColor flight_no_4 num_4" placeholder="四位数字">
+                      </div>
+                    </div>
+                    <i class="must"></i>
+                  </div>
+                  <div class="four wide field relative">
+                    <label>日期</label>
+                    <input type="text" class="inputMustBgColor list_plan_fry_date plan_flight_date" placeholder="格式为20171231">
+                    <i class="must"></i>
+                  </div>
+                  <div class="four wide field">
+                    <label>始发站</label>
+                    <input type="text" placeholder="始发站三字码" class="list_departure_code departure_code toUpper">
+                  </div>
+                  <div class="four wide field">
+                    <label>目的站</label>
+                    <input type="text" placeholder="目的站三字码" class="list_destination_code destination_code toUpper">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="four fields">
+                  <div class="four wide field ">
+                    <label>订舱类型</label>
+                    <div class="ui dropdown selection">
+                        <input type="hidden" value="0">
+                        <div class="default text">所有</div>
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <option class="item" data-value="0">所有</option>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- 按钮 -->
+            <div class="padding5030">
+              <div class="w_setbtn floatLeft">
+                <button class="ui medium orange button edit_stowage_btn">修改配载订舱</button>
+                <button class="ui medium orange button cancel_stowage_btn">取消配载订舱</button>
+                <button class="ui medium orange button beginning_of_manifest_information_btn create_manifest_btn" data-type="0">生成初舱单</button>
+              </div>
+              <div class="w_setbtn">
+                <button class="ui medium yellow button btn-search">查询</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>   
+    </div>
+
+    <div class="overflowXAuto">
+      <table class="ui celled table selled w_table">
+        <thead>
+          <tr>
+            <th class="checkbox-wrap checkAll">
+              <div class="ui checked checkbox">
+                <input type="checkbox">
+                <label>当前全选</label>
+              </div>
+              <span class="checkbox-mask"></span>
+            </th>
+            <th>序号</th>
+            <th>运单号</th>
+            <th>批次</th>
+            <th>件数</th>
+            <th>重量</th>
+            <th>品名</th>
+            <th>特货代码</th>
+            <th>起始</th>
+            <th>终到</th>
+            <th>TT</th>
+            <th>订舱</th>
+            <th>订舱号</th>
+            <th>体积</th>
+            <th>库位/件数</th>
+          </tr>
+        </thead>
+        <tbody class="StowageOrderList_table">
+        <!--循环数据-->
+        </tbody>
+      </table>
+      <div class="pageWrap">
+        <div class="pageBox">
+        </div>
+      </div>
+      <div class="padding5030 m_b_30">
+        <div class="flexCenter">
+          <button class="ui medium orange button gotoBooking">继续配载</button>
+          <button class="ui medium orange button gotoBegin">初舱单</button>
+        </div>
+      </div>
+    </div>    
+  </div>
+  <!-- 配载订舱列表结束 -->
+  <!-- 初舱单开始 -->
+  <div class="wym_container beginning_of_manifest_information stowagepage manifest begin">
+    <div class="ui dividing header page_title">初舱单</div>
+    <div>
+      <div class="w_filter">
+        <div class="ui bottom attached tab active" data-tab="first">
+          <form class="ui form">  
+            <!-- <h2 class="ui dividing header fontSize18 marginBottom20">初舱单信息</h2> -->
+            <div class="ui mini form padding10-20">
+              <div class="row">
+                <div class="four fields">
+                  <div class="four wide field" >
+                    <label>航班</label>
+                    <div class="two fields relative">
+                      <div class="six wide field paddingLeft0">
+                        <input type="text" placeholder="二字代码" class="no_2">
+                      </div>
+                      <span class="dateSymbol left37">-</span>
+                      <div class="ten wide field paddingRight0">
+                        <input type="text" placeholder="四位数字" class="num_4">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="four wide field relative">
+                    <label>日期</label>
+                    <input type="text" placeholder="格式为20171231" class="plan_flight_date">
+                  </div>
+                  <div class="four wide field" >
+                    <label>航段</label>
+                    <div class="two fields relative">
+                      <div class="six wide field paddingLeft0">
+                        <input type="text" placeholder="始发站三字码" class="departure_code toUpper">
+                      </div>
+                      <span class="dateSymbol left37">-</span>
+                      <div class="ten wide field paddingRight0">
+                        <input type="text" placeholder="目的站三字码" class="destination_code toUpper">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="four wide field">
+                    <label>货物状态</label>
+                    <div class="ui dropdown selection">
+                        <input type="hidden" value="0">
+                        <div class="default text">货物状态1</div>
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <option class="item" data-value="0">货物状态1</option>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="padding5030">
+              <div class="w_setbtn floatLeft">
+                <button class="ui medium orange button create_end_manifest_btn ending_of_manifest_information_btn">生成终舱单</button>
+              </div>
+              <div class="w_setbtn">
+                <button class="ui medium yellow button btn-search"  data-type="0">查询</button>
+              </div>
+            </div>
+            <div class="overflowXAuto marginBottom20">
+              <table class="ui celled table selled w_table structured">
+                <thead>
+                  <tr>
+                    <th rowspan="2">航班状态</th>
+                    <th rowspan="2">机号</th>
+                    <th rowspan="2">初舱单版本</th>
+                    <th colspan="6">航班总计</th>
+                  </tr>
+                  <tr>
+                    <th>货单数</th>
+                    <th>货物件数</th>
+                    <th>货物重量</th>
+                    <th>邮单数</th>
+                    <th>邮件件数</th>
+                    <th>邮件重量</th>
+                  </tr>
+                </thead>
+                <tbody class="dingcang manifest_table">
+                <!--循环数据-->
+                </tbody>
+              </table>
+            </div>
+            <div class="overflowXAuto ">
+              <h2 class="ui dividing header fontSize18 marginBottom20">航段:<span>KNG</span>-<span>PEK</span></h2>
+              <table class="ui celled table selled w_table structured">
+                <thead>
+                  <tr>
+                    <th>库位</th>
+                    <th>件数</th>
+                    <th>运单号</th>
+                    <th>批次</th>
+                    <th colspan="2">特货代码</th>
+                    <th>订舱</th>
+                    <th>重量</th>
+                    <th>起始-终到</th>
+                    <th>品名</th>
+                    <th>注释</th>
+                  </tr>
+                </thead>
+                <tbody class="dingcang manifest_detail_table">
+                <!--循环数据-->
+                </tbody>
+              </table>
+            </div>
+            <div class="padding5030">
+              <div class="flexCenter marginBottom20">
+                <button class="ui medium orange button gotoBooking">继续配载</button>
+                <button class="ui medium orange button gotoEnd">终舱单</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 初舱单结束 -->
+  <!-- 终舱单开始 -->
+  <div class="wym_container ending_of_manifest_information stowagepage manifest end" style="display: block">
+    <div class="ui dividing header page_title">终舱单</div>
+    <div>
+      <div class="w_filter">
+        <div class="ui bottom attached tab active" data-tab="first">
+          <form class="ui form">
+            <!-- <h2 class="ui dividing header fontSize18 marginBottom20">终舱单信息</h2> -->
+            <div class="ui mini form padding10-20">
+              <div class="row">
+                <div class="four fields">
+                  <div class="four wide field" >
+                    <label>航班</label>
+                    <div class="two fields relative">
+                      <div class="six wide field paddingLeft0">
+                        <input type="text" placeholder="二字代码" class="no_2 toUpper">
+                      </div>
+                      <span class="dateSymbol left37">-</span>
+                      <div class="ten wide field paddingRight0">
+                        <input type="text" placeholder="四位数字" class="num_4">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="four wide field relative">
+                    <label>日期</label>
+                    <input type="text" placeholder="格式为20171231" class="plan_flight_date">
+                  </div>
+                  <div class="four wide field" >
+                    <label>航段</label>
+                    <div class="two fields relative">
+                      <div class="six wide field paddingLeft0">
+                        <input type="text" placeholder="始发站三字码" class="departure_code toUpper">
+                      </div>
+                      <span class="dateSymbol left37">-</span>
+                      <div class="ten wide field paddingRight0">
+                        <input type="text" placeholder="目的站三字码" class="destination_code toUpper">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="four wide field">
+                    <label>显示方式</label>
+                    <div class="ui dropdown selection">
+                        <input type="hidden" value="0">
+                        <div class="default text">所有</div>
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <option class="item" data-value="0">所有</option>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="padding5030">
+              <div class="w_setbtn">
+                <button class="ui medium yellow button btn-search" data-type="1">查询</button>
+              </div>
+            </div>
+            <div class="overflowXAuto marginBottom20">
+              <table class="ui celled table selled w_table structured">
+                <thead>
+                  <tr>
+                    <th rowspan="2">航班状态</th>
+                    <th rowspan="2">机号</th>
+                    <th rowspan="2">终舱单版本</th>
+                    <th colspan="6">航班总计</th>
+                  </tr>
+                  <tr>
+                    <th>货单数</th>
+                    <th>货物件数</th>
+                    <th>货物重量</th>
+                    <th>邮单数</th>
+                    <th>邮件件数</th>
+                    <th>邮件重量</th>
+                  </tr>
+                </thead>
+                <tbody class="dingcang manifest_table">
+                <!--循环数据-->
+
+                </tbody>
+              </table>
+            </div>
+            <div class="overflowXAuto">
+              <h2 class="ui dividing header fontSize18 marginBottom20">航段:<span>KNG</span>-<span>SHA</span></h2>
+              <table class="ui celled table selled w_table structured">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>序号</th>
+                    <th>运单号</th>
+                    <th>批次</th>
+                    <th>件数</th>
+                    <th>重量</th>
+                    <th>品名</th>
+                    <th colspan="2">特货代码</th>
+                    <th>起始-终到</th>
+                    <th>订舱</th>
+                    <th>注释</th>
+                    <th>分舱单</th>
+                  </tr>
+                </thead>
+                <tbody class="manifest_detail_table">
+                <!--循环数据-->
+
+                </tbody>
+              </table>
+            </div>
+            <div class="padding5030">
+              <div class="flexCenter marginBottom20">
+                <button class="ui medium orange button gotoBooking">继续配载</button>
+                <button class="ui medium orange button gotoClose">航班关闭</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 终舱单结束 -->
+  <!-- 航班关闭开始 -->
+  <div class="wym_container flight_closed departure_flight_wrap stowagepage close">
+    <div class="ui dividing header page_title">航班关闭</div>
+    <div>
+      <div class="w_filter">
+        <div class="ui bottom attached tab active" data-tab="first">
+          <form class="ui form">
+            <div class="ui mini form padding10-20">
+              <div class="row">
+                <div class="four fields">
+                  <div class=" four wide field">
+                    <label>航班号</label>
+                    <div class="two fields relative">
+                      <div class="six wide field paddingLeft0">
+                        <input type="text" placeholder="2位航空公司代码" class="flight_no_2 toUpper">
+                      </div>
+                      <span class="dateSymbol left37">-</span>
+                      <div class="ten wide field paddingRight0">
+                        <input type="text" placeholder="4位数字" class="flight_no_4">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="four wide field ">
+                    <label>作业日期</label>
+                    <input type="text" name="" placeholder="作业日期 格式为20171231" class="plan_fry_date">
+                  </div>
+                  <div class="eight wide field ">
+                    <label>出发时间范围</label>
+                    <div class="two fields relative">
+                      <div class="eight wide field paddingLeft0">
+                        <input type="text" placeholder="起始时间 格式为0000" class="plan_fry_time_start">
+                      </div>
+                      <span class="dateSymbol left50">-</span>
+                      <div class="eight wide field paddingRight0">
+                        <input type="text" placeholder="结束时间 格式为0000" class="plan_fry_time_end">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="four fields">
+                  <div class="four wide field ">
+                    <label>机型</label>
+                    <input type="text" placeholder="格式为1位机型代码+3位数字" class="model_code toUpper">
+                  </div>
+                  <div class="four wide field">
+                    <label>到达站</label>
+                    <input type="text" placeholder="到达站三字码" class="destination_code toUpper">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- 按钮 开始-->
+            <div class="padding5030">
+              <div class="w_setbtn floatLeft">
+                <button class="ui medium orange button btn_close">关闭航班</button>
+              </div>
+              <div class="w_setbtn">
+                <button class="ui medium yellow button btn_search">查询</button>
+              </div>
+            </div>
+            <!-- 按钮 结束-->
+          </form>
+        </div>
+      </div>  
+    </div>
+    <!--table-->    
+    <div class="overflowXAuto marginbottom45">
+      <table class="ui celled table selled w_table structured">
+        <thead>
+          <tr>
+            <th rowspan="2" class="checkbox-wrap checkAll">
+              <div class="ui checked checkbox">
+                <input type="checkbox">
+                <label>当前全选</label>
+              </div>
+              <span class="checkbox-mask"></span>
+            </th>
+            <th rowspan="2">序号</th>
+            <th rowspan="2">操作</th>
+            <th rowspan="2">航班号</th>
+            <th rowspan="2">出发日期</th>
+            <th rowspan="2">STD</th>
+            <th rowspan="2">ETD</th>
+            <th rowspan="2">ATD</th>
+            <th rowspan="2">机型</th>
+            <th rowspan="2">机号</th>
+            <th colspan="5">航线</th>
+            <th rowspan="2">加班</th>
+            <th rowspan="2">国内</th>
+            <th rowspan="2">PUB</th>
+            <th rowspan="2">CAH</th>
+            <th rowspan="2">FFM</th>
+            <th rowspan="2">MAN</th>
+            <th rowspan="2">PRE</th>
+            <th rowspan="2">COM</th>
+            <th rowspan="2">REP</th>
+            <th rowspan="2">DLS</th>
+            <th rowspan="2">DEP</th>
+            <th rowspan="2">OFD</th>
+          </tr>
+          <tr>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+          </tr>
+        </thead>
+        <tbody class="dingcang departure_flight_table">
+        <!--循环数据-->
+        </tbody>
+      </table>
+    </div>
+    <div class="pageWrap">
+      <div class="pageBox">
+
+      </div>
+    </div>
+    <div class="padding5030">
+      <div class="flexCenter marginBottom20">
+        <button class="ui medium orange button gotoBooking">配载订舱</button>
+      </div>
+    </div>
+  </div>
+  <!-- 航班关闭结束 -->
+
+  <script src="../js/jquery.js"></script>
+  <script src="../js/semantic.min.js"></script>
+  <script src="../js/js.js"></script>
+  <script src="../js/layer/layer.js"></script>
+  
+  <script src="../js/utils/LXHR.js"></script>
+  <script src="../js/utils/utils.js"></script>
+  <script src="../js/component/pagination.js"></script>
+  
+  <script src="../js/stowage1/config.js"></script>
+  <script src="../js/stowage1/check.js"></script>
+
+  <script src="../js/stowage1/search_book.js"></script>
+  <script src="../js/stowage1/search_list.js"></script>
+  <script src="../js/stowage1/search_manifest.js"></script>
+  <script src="../js/stowage1/search_flight.js"></script>
+
+  <script src="../js/stowage1/booking_space.js"></script>
+  <script src="../js/stowage1/booking_list.js"></script>
+  <script src="../js/stowage1/manifest.js"></script>
+  <script src="../js/stowage1/close_flight.js"></script>
+</body>
+</html>

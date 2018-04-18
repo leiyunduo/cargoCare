@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>综合查询/报表-到达货量分析--收益类-到达航班收益分析</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/css.css">
+    <link rel="stylesheet" href="../css/semantic.min.css">
+    <link rel="stylesheet" href="../svg/font.css">
+</head>
+<body>
+  <div class="wym_container">
+    <div>
+      <div class="w_filter">
+        <div class="ui bottom attached tab active" data-tab="first">
+          <form class="ui form">
+            <div class="ui mini form padding10-20">
+              <div class="row">
+                <div class="four fields">
+                  <div class="four wide field ">
+                    <label>汇总依据</label>
+                    <div class="ui dropdown selection">
+                      <input type="hidden" value="0">
+                      <div class="default text">按航线航班1</div>
+                      <i class="dropdown icon"></i>
+                      <div class="menu">
+                        <option class="item" data-value="0">按航线航班1</option>
+                        <option class="item" data-value="1">按航线航班2</option>
+                        <option class="item" data-value="2">按航线航班3</option>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="four wide field ">
+                    <label>承运人</label>
+                    <div class="ui dropdown selection">
+                      <input type="hidden" value="0">
+                      <div class="default text"承运人1></div>
+                      <i class="dropdown icon"></i>
+                      <div class="menu">
+                        <option class="item" data-value="0">承运人1</option>
+                        <option class="item" data-value="1">承运人2</option>
+                        <option class="item" data-value="2">承运人3</option>
+                        <option class="item" data-value="3">承运人4</option>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="eight wide field">
+                    <label>起止日期</label>
+                    <div class="two fields relative paddingLeft0">
+                      <div class="eight wide field">
+                        <input type="text" placeholder="起始日期 格式位20170101">
+                      </div>
+                      <span class="dateSymbol">-</span>
+                      <div class="eight wide field paddingRight0">
+                        <input type="text" placeholder="起始日期 格式位20170101">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="four fields">
+                  <div class="four wide field ">
+                    <label>航线</label>
+                    <div class="ui dropdown selection">
+                        <input type="hidden" value="0">
+                        <div class="default text"></div>
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                          <option class="item" data-value="0">全部/全部</option>
+                          <option class="item" data-value="1">航线一</option>
+                          <option class="item" data-value="2">航线二</option>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="four wide field ">
+                    <label>机型</label>
+                    <div class="ui dropdown selection">
+                        <input type="hidden" value="0">
+                        <div class="default text">全部/全部</div>
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <option class="item" data-value="0">机型一</option>
+                            <option class="item" data-value="1">机型二</option>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="four wide field ">
+                    <label>收货人</label>
+                    <div class="ui dropdown selection">
+                        <input type="hidden" value="0">
+                        <div class="default text">收货人1</div>
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <option class="item" data-value="0">收货人1</option>
+                            <option class="item" data-value="1">收货人2</option>
+                            <option class="item" data-value="2">收货人3</option>
+                            <option class="item" data-value="3">收货人4</option>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="four wide field ">
+                    <label>货物类别</label>
+                    <div class="ui dropdown selection">
+                      <input type="hidden" value="0">
+                      <div class="default text">全部/全部</div>
+                      <i class="dropdown icon"></i>
+                      <div class="menu">
+                        <option class="item" data-value="0">全部/全部</option>
+                        <option class="item" data-value="1">类别一</option>
+                        <option class="item" data-value="2">类别二</option>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="three fields">
+                  <div class="four wide field ">
+                    <label>品名</label>
+                    <div class="ui dropdown selection">
+                        <input type="hidden" value="0">
+                        <div class="default text">全部/全部</div>
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <option class="item" data-value="0">全部/全部</option>
+                            <option class="item" data-value="1">品名一</option>
+                            <option class="item" data-value="2">品名二</option>
+                            <option class="item" data-value="3">品名三</option>
+                        </div>
+                    </div>
+
+                  </div>
+                  <div class="four wide field ">
+                    <label>关联点</label>
+                    <div class="ui dropdown selection">
+                      <input type="hidden" value="0">
+                      <div class="default text">全部/全部</div>
+                      <i class="dropdown icon"></i>
+                      <div class="menu">
+                          <option class="item" data-value="0">全部/全部</option>
+                          <option class="item" data-value="1">关联点一</option>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+         <!-- 按钮 -->
+            <div class="padding5030">
+              <div class="w_setbtn floatLeft">
+                <button class="ui Medium blue button set_search">设置查询条件</button>
+                <button class="ui Medium blue button set_show">设置数据显示项</button>
+              </div>
+              <div class="w_setbtn">
+                <button class="ui medium yellow button btn_search">查询</button>
+                <button class="ui medium orange button btn_clear">清空</button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>   
+    </div>
+    <!--table-->  
+    <div class="overflowXAuto">
+      <table class="ui celled table selled w_table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>航线</th>
+            <th>航班号</th>
+            <th>机型</th>
+            <th>降落时间</th>
+            <th>班次</th>
+            <th>货物票数</th>
+            <th>货物件数</th>          
+            <th>货物实重</th>
+            <th>货物收入</th>
+            <th>货物支出</th>
+          </tr>
+        </thead>
+        <tbody>
+        <!--循环数据-->
+        </tbody>
+      </table>
+    </div>
+    <div class="pageWrap">
+      <div class="pageBox">
+        <div class="ui pagination menu">
+          <a class="icon item">首页</a>
+          <a class="icon item">上一页</a>
+          <a class="item">1</a>
+          <a class="item">...</a>
+          <a class="item">2</a>
+          <a class="item">3</a>
+          <a class="item">4</a>
+          <a class="item">...</a>
+          <a class="item">15</a>
+          <a class="icon item">下一页</a>
+          <a class="icon item">尾页</a>
+        </div>
+        <div class="ui pagination menu alignItem">
+          <a class="icon item">跳转到</a>
+          <input type="text" class="width70px height30px item" name="">
+          <a class="icon item">页</a>
+        </div>
+      </div>
+    </div>  
+
+  </div>
+</body>
+</html>
+<script src="../js/jquery.js"></script>
+<script src="../js/semantic.min.js"></script>
+<script src="../js/js.js"></script>
+<script src="../js/layer/layer.js"></script>
+<script src="../js/utils/LXHR.js"></script>
+<script src="../js/jcsj/alert.js"></script>

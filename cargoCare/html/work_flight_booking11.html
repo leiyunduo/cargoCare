@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>出港-订舱-按作业航班订舱</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/css.css">
+    <link rel="stylesheet" href="../css/semantic.min.css">
+    <link rel="stylesheet" href="../svg/font.css">
+    <style type="text/css">
+      body>div{
+        border: 1px solid #ddd;
+      }
+      .flightInformation{
+        display:none;
+        position: absolute;
+        left: 0;
+        top:0;
+        background-color: #fff;
+        z-index: 20;
+        width:100%;
+      }
+      .flight_booking_add,.flight_booking_look,.flight_booking_modification,.flight_booking_model{
+        display:none;
+        position: absolute;
+        left: 0;
+        top:0;
+        background-color: #fff;
+        z-index: 21;
+        width:100%;
+        height:100%;
+      }
+      form{
+        padding: 10px;
+      }
+    </style>
+</head>
+<body>
+  <div class="wym_container">
+    <div>
+      <div class="w_filter">
+        <div class="ui bottom attached tab active" data-tab="first">
+          <form class="ui form">
+            <div class="ui mini form padding10-20">
+              <div class="row">
+                <div class="four fields">
+                  <div class=" four wide field">
+                    <label>航班号</label>
+                    <div class="two fields relative">
+                      <div class="six wide field paddingLeft0">
+                        <input type="text" class="flight_code" name="flight_code" placeholder="2字码" onkeyup="toUpperCase(this)">
+                      </div>
+                      <span class="dateSymbol left37">-</span>
+                      <div class="ten wide field paddingRight0">
+                        <input type="text" class="flight_num" name="flight_num" placeholder="4位数字">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="four wide field ">
+                    <label>作业日期</label>
+                    <input type="text" name="plan_fry_date" class="fry_date" placeholder="作业日期 格式为20170101">
+                  </div>
+                  <div class=" eight wide field">
+                    <label>起止时间</label>
+                    <div class="two fields relative">
+                      <div class="eight wide field paddingLeft0">
+                        <input type="text" class="plan_fry_time_start" name="plan_fry_time_start" placeholder="起始时间 2200" >
+                      </div>
+                      <span class="dateSymbol">-</span>
+                      <div class="eight wide field paddingRight0">
+                        <input type="text" class="plan_fry_time_end" name="plan_fry_time_end" placeholder="结束时间 2200">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="four fields">
+                  <div class="four wide field">
+                    <label>机型代码</label>
+                    <input type="text" placeholder="三字码" name="model_code" class="model_code" onkeyup="toUpperCase(this)">
+                  </div>
+                  <div class="four wide field" >
+                    <label>到达站</label>
+                    <input type="text" class="destination_code" name="destination_code" placeholder="到达站" onkeyup="toUpperCase(this)">
+                  </div>
+                  <div class="four wide field ">
+                    <label>国际/国内</label>
+                    <div class="ui dropdown selection">
+                      <input type="hidden" class="is_domestic" value="" name="is_domestic">
+                      <div class="default text">全部</div>
+                      <i class="dropdown icon"></i>
+                      <div class="menu">
+                        <option class="item" data-value="">全部</option>
+                        <option class="item" data-value="0">国内</option>
+                        <option class="item" data-value="1">国际</option>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="padding5030">
+              <div class="w_setbtn">
+                <button class="ui medium yellow button submit btn-search">查询</button>
+                <button class="ui medium orange button btn-clear">清空</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>   
+    </div>
+    <div class="overflowXAuto marginbottom45">
+      <!--table-->    
+      <table class="ui celled table selled w_table structured">
+        <thead>
+          <tr>
+            <th rowspan="2"></th>
+            <th rowspan="2">操作</th>
+            <th rowspan="2">航班号</th>
+            <th rowspan="2">出发日</th>
+            <th rowspan="2">STD</th>
+            <th rowspan="2">机型</th>
+            <th rowspan="2">加班</th>
+            <th rowspan="2">国际/国内</th>
+            <th rowspan="2">PUB</th>
+            <th rowspan="2">CAN</th>
+            <th rowspan="2">订舱终止时间</th>
+            <th colspan="5">按航线订舱</th>
+            <th rowspan="2">可配舱位</th>
+            <th rowspan="2">定舱量</th>
+            <th rowspan="2">剩余舱位</th>
+            <th rowspan="2">到货</th>
+          </tr>
+          <tr>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+          </tr>
+        </thead>
+        <tbody class="table-list">
+        </tbody>
+      </table>
+    </div>
+       <!-- page -->
+    <div class="pageWrap">
+      <div class="pageBox">
+      </div>
+    </div>
+  </div>
+  <div class="flightInformation">
+    <div class="two_level_menu_head">
+      <span>航班订舱</span>
+      <span id="close_two_level_page" class="two_level_menu_head_close icon-cancel-circle"></span>
+    </div>
+    <form class="ui form">
+      <div class="ui form padding10-20 borderBottom">
+        <div class="row">
+          <div class="two fields">
+            <div class="four wide field">
+              <label>订舱号</label>
+              <input type="text" class="booknum" name="booking_no" placeholder="订舱号(请输6位数字)">
+            </div>
+            <div class="four wide field">
+              <label>航班号</label>
+              <div class="two fields relative">
+                <div class="six wide field paddingLeft0">
+                  <input type="text" class="twofly" placeholder="二字代码" onkeyup="toUpperCase(this)">
+                </div>
+                <span class="dateSymbol left37">-</span>
+                <div class="ten wide field paddingRight0">
+                  <input type="text" class="flynum" placeholder="四位数字">
+                </div>
+              </div>
+            </div>
+            <div class="four wide field">
+              <label>航班日期</label>
+              <input type="text" class="fry_date_" placeholder="航班日期 格式为20170101">
+            </div>
+            <div class="four wide field">
+              <label>订舱客户</label>
+              <input type="text" class="booking_customer_code">
+            </div>
+          </div>
+        </div>
+        <div class="row" id="row">
+          <div class="four fields">
+            <div class="four wide field ">
+              <label>起飞机场</label>
+              <input type="text" class="departure_code_" placeholder="起飞机场三字码" onkeyup="toUpperCase(this)">
+            </div>
+            <div class="four wide field ">
+              <label>到达机场</label>
+              <input type="text" class="destination_code_" placeholder="到达机场三字码" onkeyup="toUpperCase(this)">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="padding5030">
+        <div class="w_setbtn">
+          <button class="ui medium yellow button submit btn_search">查询</button>
+          <button class="ui medium blue button submit flight_booking_add_btn">订舱录入</button>
+        </div>
+        <div class="w_setbtn floatLeft">
+          <button class="ui medium orange button sure su auth_about" title="1" data-id="1178">订舱恢复</button>
+          <button class="ui medium orange button no sur auth_about" title="2" data-id="1178">订舱取消</button>
+          <button class="ui medium orange button back co auth_about" title="1" data-id="1181">审核通过</button>
+          <button class="ui medium orange button back cos auth_about" title="2" data-id="1181">审核不通过</button>
+        </div>
+      </div>
+    </form>
+    <div class="overflowXAuto">
+      <table class="ui celled table selled w_table structured">
+        <thead>
+          <tr>
+            <th rowspan="2"></th>
+            <th rowspan="2">序号</th>
+            <th rowspan="2">操作</th>
+            <th rowspan="2">订舱号</th>
+            <th rowspan="2">状态</th>
+            <th rowspan="2">审核状态</th>
+            <!--<th rowspan="2">释放</th>-->
+            <th rowspan="2">订舱客户</th>
+            <th colspan="2">航程</th>
+            <th rowspan="2">航班号</th>
+            <th rowspan="2">航班日期</th>
+            <th rowspan="2">件数</th>
+            <th rowspan="2">重量</th>
+            <th rowspan="2">品名</th>
+            <th rowspan="2">注释</th>
+          </tr>
+          <tr>
+            <th>起飞</th>
+            <th>到达</th>
+          </tr>
+        </thead>
+        <tbody class="table-listMsg">
+        </tbody>
+      </table>
+    </div>  
+    <div class="pageWrapMsg">
+      <div class="pageBox pageBoxs">
+        <div class="ui pagination menu">
+          <a class="icon item">
+            首页
+          </a>
+          <a class="icon item" id="last_page_">
+            上一页
+          </a>
+          <a class="item curpage1" value='1'>1</a>
+          <a class="item curpage2" value='2'>2</a>
+          <a class="item curpage3" value='3'>3</a>
+          <a class="item curpage4" value='4'>4</a>
+          <a class="item curpage5" value='5'>5</a>
+          <!-- <a class="item">...</a>
+          <a class="item">15</a> -->
+          <a class="icon item" id="next_page_">
+            下一页
+          </a>
+          <a class="icon item">
+            尾页
+          </a>
+        </div>
+        <div class="ui pagination menu alignItem">
+          <a class="icon item">
+            跳转到
+          </a>
+          <input type="text" class="width70px height30px item" name="">
+          <a class="icon item">
+            页
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="flight_booking_add">
+    <div class="two_level_menu_head">
+      <span>航班订舱添加</span>
+      <span id="close_two_level_page" class="two_level_menu_head_close icon-cancel-circle"></span>
+    </div>
+    <form class="ui form booking_entry">
+      <div class="row">
+        <div class="four fields">
+          <div class="four wide field" >
+            <label>订舱号</label>
+            <input type="text" class="_booking_no_" placeholder="6位数字" name="booking_entry_booking_number">
+          </div>
+          <div class="four wide field" >
+            <label>运单号</label>
+            <div class="two fields relative">
+              <div class="six wide field paddingLeft0">
+                <input type="text" class="_order_three_" placeholder="三字码" onkeyup="toUpperCase(this)" name="booking_entry_waybill_number_three_code">
+              </div>
+              <span class="dateSymbol left37">-</span>
+              <div class="ten wide field paddingRight0">
+                <input type="text" class="_order_numm_" placeholder="8位数字" name="booking_entry_waybill_number_eight_digits">
+              </div>
+            </div>
+          </div>
+          <div class="four wide field">
+            <label>客户代码</label>
+            <input type="text" class="_booking_customer_code_" placeholder="客户代码(8位数字)">
+          </div>
+          <div class="four wide field" >
+            <label>客户名称</label>
+            <input type="text" class="inputMustBgColor _booking_customer_name_" placeholder="客户的名称" name="booking_entry_customer_name">
+            <i class="must"></i>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="four fields">
+          <div class="four wide field disable" >
+            <label>联系人</label>
+            <input type="text" placeholder="客户联系人姓名" class="_booking_contact_person_">
+          </div>
+          <div class="two wide field" >
+            <label>电话</label>
+            <input type="text" placeholder="客户联系人电话号" class="_booking_contact_person_tel_" name="booking_entry_customer_call">
+          </div>
+          <div class="two wide field">
+            <label>手机</label>
+            <input type="text" placeholder="客户联系人手机号" class="_booking_contact_person_phone_" name="booking_entry_customer_mobile">
+          </div>
+          <div class="four wide field">
+            <label>航班号</label>
+            <input type="text" class="inputMustBgColor _order_" onkeyup="toUpperCase(this)" placeholder="2位航空公司代码+4位数字" readonly="true">
+            <i class="must"></i>
+          </div>
+          <div class="four wide field">
+            <label>航班日期</label>
+            <input type="text" class="inputMustBgColor _date_" placeholder="航班日期 格式为20170101" readonly="true">
+            <i class="must"></i>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="four fields">
+          <div class="two wide field" >
+            <label>始发站</label>
+            <input type="text" class="inputMustBgColor _shifa_" placeholder="始发站三字码" readonly="true" onkeyup="toUpperCase(this)">
+            <i class="must"></i>
+          </div>
+          <div class="two wide field" >
+            <label>目的站</label>
+            <input type="text" class="inputMustBgColor _mudi_" placeholder="目的站三字码" readonly="true" onkeyup="toUpperCase(this)">
+            <i class="must"></i>
+          </div>
+          <div class="four wide field disable" >
+            <label>品名</label>
+            <input type="text" class="_product_no_" placeholder="物品名称">
+          </div>
+          <div class="two wide field" >
+            <label>件数</label>
+            <input type="text" class="_apply_quatity_" placeholder="请输入正整数" name="booking_entry_jianshu_number">
+          </div>
+          <div class="two wide field" >
+            <label>重量</label>
+            <input type="text" class="inputMustBgColor _apply_weight_" placeholder="请输入数字" name="booking_entry_weight">
+            <i class="must"></i>
+          </div>
+          <div class="two wide field" >
+            <label>体积</label>
+            <input type="text" placeholder="体积(请输入整数)" class="_apply_volume_" name="booking_entry_volume">
+          </div>
+          <div class="two wide field" >
+            <label>箱板数</label>
+            <input type="text" placeholder="箱板数(请输入整数)" class="_number_plate_" name="booking_entry_box_plates_number">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="fields">
+          <div class="sixteen wide field">
+            <label>客服记录</label>
+            <textarea rows="2" class="_customer_service_records_"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="padding5030">
+        <div class="flexCenter">
+          <button class="ui medium orange button luru">提交</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="flight_booking_look">
+    <div class="two_level_menu_head">
+      <span>航班订舱查看</span>
+      <span id="close_two_level_page" class="two_level_menu_head_close icon-cancel-circle"></span>
+    </div>
+    <form class="ui form">
+      <div class="row">
+        <div class="four fields">
+          <div class="four wide field" >
+            <label>订舱号</label>
+            <input type="text" readonly="true" class="_book">
+          </div>
+          <div class="four wide field" >
+            <label>运单号</label>
+            <div class="two fields relative">
+              <div class="six wide field paddingLeft0">
+                <input type="text" readonly="true" class="_order_t">
+              </div>
+              <span class="dateSymbol left37">-</span>
+              <div class="ten wide field paddingRight0">
+                <input type="text" readonly="true" class="_order_n">
+              </div>
+            </div>
+          </div>
+          <div class="four wide field">
+            <label>客户代码</label>
+            <input type="text" readonly="true" class="_booking_customer_code">
+          </div>
+          <div class="four wide field" >
+            <label>客户名称</label>
+            <input type="text" readonly="true" class="_booking_customer_name">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="four fields">
+          <div class="four wide field" >
+            <label>联系人</label>
+            <input type="text" readonly="true" class="_booking_contact_person">
+          </div>
+          <div class="four wide field" >
+            <label>电话/手机</label>
+            <div class="two fields relative">
+              <div class="eight wide field paddingLeft0">
+                <input type="text" readonly="true" class="_booking_contact_person_tel">
+              </div>
+              <span class="dateSymbol">-</span>
+              <div class="eight wide field paddingRight0">
+                <input type="text" readonly="true" class="_booking_contact_person_phone">
+              </div>
+            </div>
+          </div>
+          <div class="four wide field">
+            <label>航班号</label>
+            <input type="text" readonly="true" class="order _flight_no">
+          </div>
+          <div class="four wide field">
+            <label>航班日期</label>
+            <input type="text" readonly="true" class="_plan_fry_date">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="four fields">
+          <div class="four wide field" >
+            <label>始发站/目的站</label>
+            <div class="two fields relative">
+              <div class="eight wide field paddingLeft0">
+                <input type="text" readonly="true" class="_departure_code">
+              </div>
+              <span class="dateSymbol">-</span>
+              <div class="eight wide field paddingRight0">
+                <input type="text" readonly="true" class="_destination_code">
+              </div>
+            </div>
+          </div>
+          <div class="four wide field" >
+            <label>品名</label>
+            <input type="text" readonly="true" class="_product_no">
+          </div>
+          <div class="four wide field" >
+            <label>重量/件数</label>
+            <div class="two fields relative">
+              <div class="eight wide field paddingLeft0">
+                <input type="text" readonly="true" class="_apply_weight">
+              </div>
+              <span class="dateSymbol">-</span>
+              <div class="eight wide field paddingRight0">
+                <input type="text" readonly="true" class="_apply_quatity">
+              </div>
+            </div>  
+          </div>
+          <div class="four wide field" >
+            <label>体积/箱板数</label>
+            <div class="two fields relative">
+              <div class="eight wide field paddingLeft0">
+                <input type="text" readonly="true" class="_apply_volume">
+              </div>
+              <span class="dateSymbol">-</span>
+              <div class="eight wide field paddingRight0">
+                <input type="text" readonly="true" class="_number_plate">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="fields">
+          <div class="sixteen wide field">
+            <label>客服记录</label>
+            <input type="text" readonly="true" class="_customer_service_records">
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="flight_booking_modification">
+    <div class="two_level_menu_head">
+      <span>航班订舱修改</span>
+      <span id="close_two_level_page" class="two_level_menu_head_close icon-cancel-circle"></span>
+    </div>
+    <form class="ui form booking_modification">
+      <div class="row">
+        <div class="four fields">
+          <div class="four wide field" >
+            <label>订舱号</label>
+            <input type="text" readonly="true" class="book" name="booking_modification_booking_number" placeholder="订舱号(六位数字)">
+          </div>
+          <!-- <div class="two wide field" >
+                              <label>状态</label>
+                              <div class="ui dropdown selection">
+                                <input type="hidden" class="status" value="">
+                                <div class="default text">SS</div>
+                                <i class="dropdown icon"></i>
+                                <selected class="menu">
+                                  <option class="item" data-value="0">SS</option>
+                                </selected>
+                              </div>
+                            </div> -->                  
+          <div class="four wide field" >
+            <label>客户代码</label>
+            <input type="text" class="booking_customer_codes" value="" onkeyup="toUpperCase(this)">
+          </div>
+          <div class="four wide field">
+            <label>运单号</label>
+            <div class="two fields relative">
+              <div class="six wide field paddingLeft0">
+                <input type="text" class="order_t" placeholder="三字码" onkeyup="toUpperCase(this)" name="booking_modification_waybill_number_three_code">
+              </div>
+              <span class="dateSymbol left37">-</span>
+              <div class="ten wide field paddingRight0">
+                <input type="text" class="order_n" placeholder="8位数字" name="booking_modification_number_eight_digits">
+              </div>
+            </div>
+          </div>
+          <div class="four wide field " >
+            <label>客户名称</label>
+            <input type="text" class="booking_customer_name" placeholder="客户名称">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="four fields">
+
+          <div class="two wide field" >
+            <label>件数</label>
+            <input type="text" class="inputMustBgColor apply_quatity" placeholder="请输入整数" name="booking_modification_jianshu_number">
+            <i class="must"></i>
+          </div>
+          <div class="two wide field" >
+            <label>重量</label>
+            <input type="text" class="inputMustBgColor apply_weight" placeholder="请输入数字" name="booking_modification_weight">
+            <i class="must"></i>
+          </div>
+          <div class="four wide field">
+            <label>品名</label>
+            <input type="text" class="inputMustBgColor product_no" placeholder="物品名称" name="booking_modification_product_name">
+            <i class="must"></i>
+          </div>
+
+          <div class="two wide field" >
+            <label>体积</label>
+            <input type="text" class="apply_volume" placeholder="请输入数字" name="booking_modification_volume">
+          </div>
+
+          <div class="two wide field" >
+            <label>箱板数</label>
+            <input type="text" class="number_plate" placeholder="请输入整数" name="booking_modification_box_plates_number">
+          </div>
+          <div class="two wide field" >
+            <label>始发站</label>
+            <input type="text" class="inputMustBgColor departure_code" placeholder="始发站三字码" readonly="true" onkeyup="toUpperCase(this)">
+            <i class="must"></i>
+          </div>
+          <div class="two wide field" >
+            <label>目的站</label>
+            <input type="text" class="inputMustBgColor destination_code" placeholder="目的站簪子吗" readonly="true" onkeyup="toUpperCase(this)">
+            <i class="must"></i>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="four fields">
+
+          <div class="four wide field" >
+            <label>联系人</label>
+            <input type="text" class="booking_contact_person" placeholder="客户联系人姓名">
+          </div>
+          <div class="two wide field" >
+            <label>电话</label>
+            <input type="text" class="booking_contact_person_tel" placeholder="客户电话号" name="booking_modification_customer_call">
+          </div>
+          <div class="two wide field" >
+            <label>手机</label>
+            <input type="text" class="booking_contact_person_phone" placeholder="客户手机号" name="booking_modification_customer_mobile">
+          </div>
+          <div class="four wide field" >
+            <label>航班号</label>
+            <input type="text" class="inputMustBgColor order" onkeyup="toUpperCase(this)" placeholder="2位航空公司代码+4位数字" readonly="true">
+            <i class="must"></i>
+          </div>
+
+          <div class="four wide field" >
+            <label>航班日期</label>
+            <input type="text" class="inputMustBgColor plan_fry_date" placeholder="航班日期 格式为20170101" readonly="true">
+            <i class="must"></i>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="fields">
+          <div class="sixteen wide field">
+            <label>客服记录</label>
+            <textarea rows="2" class="remark"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="padding5030">
+        <div class="flexCenter">
+          <button class="ui medium orange button xiugai">提交</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="flight_booking_model">
+    <div class="two_level_menu_head">
+      <span>航班模版添加</span>
+      <span id="close_two_level_page" class="two_level_menu_head_close icon-cancel-circle"></span>
+    </div>
+    <form class="ui form template_add">
+      <div class="row">
+        <div class="four fields">
+          <div class="four wide field" >
+            <label>订舱号</label>
+            <input type="text" class="book_" name="template_add_booking_number" placeholder="订舱号(六位数字)">
+          </div>
+          <div class="four wide field" >
+            <label>运单号</label>
+            <div class="two fields relative">
+              <div class="six wide field paddingLeft0">
+                <input type="text" placeholder="3字码" class="order_t_" onkeyup="toUpperCase(this)" name="template_add_waybill_number_three_code">
+              </div>
+              <span class="dateSymbol left37">-</span>
+              <div class="ten wide field paddingRight0">
+                <input type="text" placeholder="8位数字" class="order_n_" name="template_add_number_eight_digits">
+              </div>
+            </div>
+          </div>
+          <div class="four wide field">
+            <label>客户代码</label>
+            <input type="text" class="booking_customer_code_" onkeyup="toUpperCase(this)" placeholder="客户代码">
+          </div>
+          <div class="four wide field" >
+            <label>客户名称</label>
+            <input type="text" class="inputMustBgColor booking_customer_name_" placeholder="客户名称">
+            <i class="must"></i>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="five fields">
+          <div class="four wide field disable" >
+            <label>联系人</label>
+            <input type="text" class="booking_contact_person_" placeholder="客户联系人姓名">
+          </div>
+          <div class="two wide field" >
+            <label>电话</label>
+            <input type="text" class="booking_contact_person_tel_" placeholder="客户电话号" name="template_add_customer_call">
+          </div>
+          <div class="two wide field" >
+            <label>手机</label>
+            <input type="text" class="booking_contact_person_phone_" placeholder="客户手机号" name="template_add_customer_mobile">
+          </div>
+          <div class="four wide field">
+            <label>航班号</label>
+            <input type="text" class="inputMustBgColor order_" onkeyup="toUpperCase(this)" placeholder="2位航空公司代码+4位数字" readonly="true">
+            <i class="must"></i>
+          </div>
+          <div class="four wide field">
+            <label>航班日期</label>
+            <input type="text" class="inputMustBgColor plan_fry_date_" placeholder="航班日期 格式为20170101" readonly="true">
+            <i class="must"></i>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="seven fields">
+          <div class="two wide field" >
+            <label>始发站</label>
+            <input type="text" class="inputMustBgColor departure_code_" placeholder="始发站三字码" readonly="true" onkeyup="toUpperCase(this)">
+            <i class="must"></i>
+          </div>
+
+          <div class="two wide field" >
+            <label>目的站</label>
+            <input type="text" class="inputMustBgColor destination_code_" placeholder="目的站三字码" readonly="true" onkeyup="toUpperCase(this)">
+            <i class="must"></i>
+          </div>
+
+          <div class="four wide field disable" >
+            <label>品名</label>
+            <input type="text" class="product_no_" placeholder="物品名称">
+          </div>
+          <div class="two wide field" >
+            <label>件数</label>
+            <input type="text" class="apply_quatity_" placeholder="请输入整数" name="template_add_jianshu_number">
+          </div>
+
+          <div class="two wide field" >
+            <label>重量</label>
+            <input type="text" class="inputMustBgColor apply_weight_" placeholder="请输入数字" name="template_add_weight">
+            <i class="must"></i>
+          </div>
+
+          <div class="two wide field" >
+            <label>体积</label>
+            <input type="text" class="apply_volume_" placeholder="请输入数字" name="template_add_volume">
+          </div>
+
+          <div class="two wide field" >
+            <label>箱板数</label>
+            <input type="text" class="number_plate_" placeholder="请输入整数" name="template_add_box_plates_number">
+          </div>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="fields">
+          <div class="sixteen wide field">
+            <label>备注</label>
+            <textarea rows="2" class="remark_"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="padding5030">
+        <div class="flexCenter">
+          <button class="ui medium orange button tijiaomodel">提交</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
+<script src="../js/jquery.js"></script>
+<script src="../js/semantic.min.js"></script>
+<script src="../js/js.js"></script>
+<script src="../js/component/pagination.js"></script>
+<script src="../js/work_flight_booking/work_flight_booking.js"></script>
+<script src="../js/utils/utils.js"></script>
+<script src="../js/utils/LXHR.js"></script>
+<script src="../js/layer/layer.js"></script>
+<script src="../js/work_flight_booking/validate.js"></script>
+<script type="text/javascript">
+//航班信息
+  $('.look_flightInformation').on('click',function(){
+    $('.flightInformation').show()
+})
+  $('.flightInformation .two_level_menu_head_close').on('click',function(){
+    $('.flightInformation').hide()
+    $('.wym_container').show()
+    $('.flightInformation input').val('')
+  })
+//订舱添加
+  $('.flight_booking_add_btn').on('click',function(){
+    $('.flight_booking_add').show()
+  })
+  $('.flight_booking_add .two_level_menu_head_close').on('click',function(){
+    $('.flight_booking_add').hide()
+    $('.flightInformation').show()
+    $('.flight_booking_add input').val('')
+  })
+//订舱查看
+  $('.flight_booking_look_btn').on('click',function(){
+    $('.flight_booking_look').show()
+  })
+  $('.flight_booking_look .two_level_menu_head_close').on('click',function(){
+    $('.flightInformation').show()
+    $('.flight_booking_look').hide()
+    $('.flight_booking_look input').val('')
+  })
+//订舱修改
+  $('.flight_booking_modification_btn').on('click',function(){
+    $('.flight_booking_modification').show()
+  })
+  $('.flight_booking_modification .two_level_menu_head_close').on('click',function(){
+    $('.flight_booking_modification').hide()
+    $('.flight_booking_modification input').val('')
+    $('.flightInformation').show()
+  })
+//订舱模版
+  $('.flight_booking_model_btn').on('click',function(){
+    $('.flight_booking_model').show()
+  })
+  $('.flight_booking_model .two_level_menu_head_close').on('click',function(){
+    $('.flight_booking_model').hide()
+    $('.flight_booking_model input').val('')
+    $('.flightInformation').show()
+  })
+</script>
+

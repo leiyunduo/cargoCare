@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>系统管理 权限管理</title>
+	<link rel="stylesheet" href="../css/reset.css">
+	<link rel="stylesheet" href="../css/css.css">
+	<link rel="stylesheet" href="../css/semantic.min.css">
+	<link rel="stylesheet" href="../svg/font.css">
+	<link rel="stylesheet" href="../css/zTree/zTreeStyle.css">
+	<style>
+		.permission_wrap {
+			height: 100%;
+			overflow: hidden;
+		}
+
+		.tree_wrap {
+			height: 80%;
+			min-width: 300px;
+			max-width: 400px;
+			float: left;
+			margin-right: 100px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="wym_container main_search">
+		<div>
+			<div class="w_filter">
+				<div class="ui bottom attached tab active" data-tab="first">
+					<form class="ui form">
+						<div class="ui mini form padding10-20">
+							<div class="row">
+								<div class="four fields">
+									<div class="field four wide">
+										<label>用户代码</label>
+										<input type="text" placeholder="用户代码" class="name">
+									</div>
+									<div class="field four wide">
+										<label>中文名</label>
+										<input type="text" placeholder="中文名" class="real_name">
+									</div>
+									<div class="field four wide">
+										<label>级别</label>
+										<div class="ui dropdown selection level"></div>
+									</div>
+									<div class="field four wide depart_select">
+										<label>部门</label>
+										<div class="ui dropdown selection depart_id depart">
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- 左按钮 -->
+						<div class="padding5030">
+							<div class="w_setbtn">
+								<button class="ui medium yellow button btn_search">查询</button>
+								<button class="ui medium orange button btn_clear_main">清空</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!--table-->
+		<table class="ui celled table selled w_table">
+			<thead>
+				<tr>
+					<th>序号</th>
+					<th>操作</th>
+					<th>用户代码</th>
+					<th>中文名</th>
+					<th>部门</th>
+					<th>级别</th>
+					<th>手机号</th>
+					<th>是否已授权</th>
+				</tr>
+			</thead>
+			<tbody class="user_table">
+				<!--循环数据-->
+			</tbody>
+		</table>
+		<!-- page -->
+		<div class="pageWrap">
+			<div class="pageBox">
+
+			</div>
+		</div>
+	</div>
+
+	<div class="two_level_menu_wrap">
+		<div class="two_level_menu">
+			<div class="two_level_menu_head">
+				<span class="title">设置权限</span>
+				<span id="close_two_level_page" class="two_level_menu_head_close icon-cancel-circle"></span>
+			</div>
+			<div class="two_level_menu_body">
+				<!-- 选项卡开始-->
+				<div class="tabNav">
+					<div class="ui tabular menu tabWrap fontSize18 ">
+						<a class="item detail active">
+              权限信息
+            </a>
+					</div>
+				</div>
+				<!-- 选项卡结束-->
+				<!-- 二级菜单盒子开始 -->
+				<div class="tabBodyWrap">
+					<!-- 权限信息开始 -->
+					<div class="active tabBox detail">
+						<div class="ui segment permission_wrap">
+							<div class="ui tree_wrap overflowYAuto">
+								<ul id="tree" class="ztree"></ul>
+							</div>
+							<!-- 员工信息 -->
+							<div class="ui list left floated">
+								<div class="item">
+									<i class="user icon"></i>
+									<div class="content">
+										<span>用户名:</span> 
+										<span class="user_name"></span>
+									</div>
+								</div>
+								<div class="item">
+									<i class="linkify icon"></i>
+									<div class="content">
+										<span>真实姓名:</span> 
+										<span class="user_real_name"></span>
+									</div>
+								</div>
+								<div class="item">
+									<i class="users icon"></i>
+									<div class="content">
+										<span>所属部门:</span> 
+										<span class="user_depart"></span>
+									</div>
+								</div>
+								<div class="item">
+									<i class="options icon"></i>
+									<div class="content">
+										<span>级别:</span> 
+										<span class="user_level"></span>
+									</div>
+								</div>
+							</div>
+							<div class="padding5030">
+								<div class="flexCenter">
+									<button class="ui medium blue button btn_save">保存权限</button>
+									<button class="ui medium blue button btn_save_group">保存权限方案</button>
+									<button class="ui medium blue button btn_select_group">调用权限方案</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 权限信息结束 -->
+				</div>
+				<!-- 二级菜单盒子结束 -->
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
+<script src="../js/jquery.js"></script>
+<script src="../js/zTree/jquery.ztree.core.js"></script>
+<script src="../js/zTree/jquery.ztree.excheck.js"></script>
+<script src="../js/semantic.min.js"></script>
+<script src="../js/layer/layer.js"></script>
+<script src="../js/js.js"></script>
+<script src="../js/more.btn.js"></script>
+
+<script src="../js/utils/LXHR.js"></script>
+<script src="../js/utils/utils.js"></script>
+<script src="../js/utils/store.js"></script>
+
+<script src="../js/component/pagination.js"></script>
+
+<script src="../js/permission_management/config.js"></script>
+<script src="../js/permission_management/search.js"></script>
+<script src="../js/permission_management/tree.js"></script>
+<script src="../js/permission_management/setAuth.js"></script>

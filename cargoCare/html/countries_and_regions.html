@@ -1,0 +1,79 @@
+
+<script src="../js/jquery.js"></script>
+<script src="../js/semantic.min.js"></script>
+<script src="../js/js.js"></script>
+<script src="../js/more.btn.js"></script>
+<script src="../js/json.js"></script>
+<script src="../js/inflight_main_management.js"></script><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>基础数据-国家和地区</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/css.css">
+    <link rel="stylesheet" href="../css/semantic.min.css">
+    <link rel="stylesheet" href="../svg/font.css">
+</head>
+<body>
+  <div class="wym_container">
+    <div>
+      <div class="w_filter">
+        <div class="ui bottom attached tab active" data-tab="first">
+          <form class="ui form">
+            <div class="ui mini form padding10-20">
+              <div class="row">
+                <div class="four fields">
+                  <div class="four wide field">
+                    <label>国家地区代码</label>
+                    <input type="text" placeholder="国家地区代码">
+                  </div>
+                  <div class="four wide field">
+                    <label>中文名</label>
+                    <input type="text" placeholder="中文名">
+                  </div>
+                  <div class="four wide field">
+                    <label>英文名</label>
+                    <input type="text" placeholder="英文名">
+                  </div>
+                </div>
+              </div>
+            </div>
+         <!-- 按钮 -->
+            <div class="padding5030">
+              <div class="w_setbtn">
+                <button class="ui Medium yellow button submit btn-search">查询</button>
+              </div>
+              <div class="w_setbtn floatLeft">
+                   <button class="ui medium orange button import_settings">导入相关</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>   
+    </div>
+    <!--table-->    
+    <table class="ui celled table selled w_table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>国家地区代码</th>
+          <th>电话区号</th>
+          <th>中文名</th>
+          <th>英文名</th>
+          <th>多家中文名拼音</th>     
+        </tr>
+      </thead>
+      <tbody>
+      <!--循环数据-->
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
+<script src="../js/jquery.js"></script>
+<script src="../js/semantic.min.js"></script>
+<script src="../js/js.js"></script>
+<script src="../js/more.btn.js"></script>
+<script src="../js/utils/LXHR.js"></script>
+<script src="../js/layer/layer.js"></script>
+<script src="../js/jcsj/alert.js"></script>

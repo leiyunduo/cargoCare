@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/css.css">
+    <link rel="stylesheet" href="../css/semantic.min.css">
+    <link rel="stylesheet" href="../svg/font.css">
+</head>
+<body>
+  <div class="wym_container">
+    <div>
+      <div class="w_filter">
+        <div class="ui bottom attached tab active" data-tab="first">
+          <form class="ui form">
+            <div class="ui mini form padding10-20">
+                <div class="row">
+                  <div class="four fields">
+                    <div class=" four wide field">
+                      <label>运单号</label>
+                      <div class="two fields relative">
+                        <div class="six wide field paddingLeft0">
+                          <input type="text" placeholder="3字码">
+                        </div>
+                        <span class="dateSymbol left37">-</span>
+                        <div class="ten wide field paddingRight0">
+                          <input type="text" placeholder="8位数字">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="four wide field ">
+                      <label>单据类型</label>
+                      <div class="ui dropdown selection">
+                        <input type="hidden" value="0">
+                        <div class="default text">全部</div>
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                          <option class="item" data-value="0">全部</option>
+                          <option class="item" data-value="1">即时</option>
+                          <option class="item" data-value="2">事后</option>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="four wide field ">
+                      <label>制单类型</label>
+                      <div class="ui dropdown selection">
+                        <input type="hidden" value="0">
+                        <div class="default text">全部</div>
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                          <option class="item" data-value="0">全部</option>
+                          <option class="item" data-value="1">正常制单</option>
+                          <option class="item" data-value="2">简易制单</option>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="four wide field" >
+                      <label>起点</label>
+                      <input type="text" placeholder="起点">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="four fields">
+                    <div class="four wide field">
+                      <label>终点</label>
+                      <input type="text">
+                    </div>
+                    <div class="four wide field ">
+                      <label>出港状态</label>
+                      <div class="ui dropdown selection">
+                          <input type="hidden" value="0">
+                          <div class="default text">全部</div>
+                          <i class="dropdown icon"></i>
+                          <div class="menu">
+                              <option class="item" data-value="0">全部</option>
+                              <option class="item" data-value="1">未出港</option>
+                              <option class="item" data-value="2">部分出港</option>
+                              <option class="item" data-value="3">已出港</option>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="four wide field">
+                      <label>发货人</label>
+                      <input type="text" placeholder="发货人">
+                    </div>
+                    <div class="four wide field">
+                      <label>收货人</label>
+                      <input type="text" placeholder="收货人">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="fields">
+                    <div class="eight wide field">
+                      <label>开票日期</label>
+                      <div class="two fields relative">
+                        <div class="eight wide field paddingLeft0">
+                          <input type="text" placeholder="起始日期 格式20170101">
+                        </div>
+                        <span class="dateSymbol">-</span>
+                        <div class="eight wide field paddingRight0">
+                          <input type="text" placeholder="结束日期 格式20170101">
+                        </div>
+                      </div>
+                    </div>
+                  </div>  
+                </div>
+            </div>
+           <!-- 按钮 -->
+            <div class="padding5030">
+              <div class="w_setbtn">
+                <button class="ui medium yellow button submit">查询</button>
+                <button class="ui medium blue button">添加</button>
+                <button class="ui medium orange button">清空</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>   
+    </div>
+    <!--table-->    
+    <div class="overflowXAuto">
+      <table class="ui celled table selled w_table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>运单号</th>
+            <th>始发站</th>
+            <th>起点中文名</th>
+            <th>目的站</th>
+            <th>终点中文名</th>
+            <th>签收状态</th>
+            <th>操作</th>
+            <th>单据类型</th>
+            <th>第一程</th>
+            <th>发货人名称</th>
+          </tr>
+        </thead>
+        <tbody>
+        <!--循环数据-->
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+</body>
+</html>
+<script src="../js/jquery.js"></script>
+<script src="../js/semantic.min.js"></script>
+<script src="../js/js.js"></script>
+<script src="../js/more.btn.js"></script>

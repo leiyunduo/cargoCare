@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>基础数据-运价优先级</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/css.css">
+    <link rel="stylesheet" href="../css/semantic.min.css">
+    <link rel="stylesheet" href="../svg/font.css">
+    <link rel="stylesheet" href="../css/zTree/jcsj.css">
+</head>
+<body>
+<div class="wym_container">
+    <div>
+        <div class="w_filter">
+            <div class="ui bottom attached tab active" data-tab="first">
+                <form class="ui form">
+                    <div class="ui mini form padding10-20">
+                        <div class="row">
+                            <div class="four fields">
+                                <div class="four wide field ">
+                                    <label>是否关联</label>
+                                    <div class="ui dropdown selection">
+                                        <input type="hidden" class="is_relate" value="是" name="is_relate">
+                                        <div class="default text">是</div>
+                                        <i class="dropdown icon"></i>
+                                        <div class="menu">
+                                            <option class="item" data-value="是">是</option>
+                                            <option class="item" data-value="否">否</option>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="four wide field ">
+                                    <label>出发/到达</label>
+                                    <div class="ui dropdown selection">
+                                        <input type="hidden" class="start_arrive" value="0" name="start_arrive">
+                                        <div class="default text">出发</div>
+                                        <i class="dropdown icon"></i>
+                                        <div class="menu">
+                                            <option class="item" data-value="0">出发</option>
+                                            <option class="item" data-value="1">到达</option>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="four wide field ">
+                                    <label>单据类型</label>
+                                    <div class="ui dropdown selection">
+                                        <input type="hidden" class="order_type" value="0" name="order_type">
+                                        <div class="default text">主单</div>
+                                        <i class="dropdown icon"></i>
+                                        <div class="menu">
+                                            <option class="item" data-value="0">主单</option>
+                                            <option class="item" data-value="1">分单</option>
+                                            <option class="item" data-value="2">邮件</option>
+                                            <option class="item" data-value="3">民航快递</option>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="four wide field ">
+                                    <label>费用类型</label>
+                                    <div class="ui dropdown selection">
+                                        <input type="hidden" class="flight_other" value="0" name="flight_other">
+                                        <div class="default text">航空运费</div>
+                                        <i class="dropdown icon"></i>
+                                        <div class="menu">
+                                            <option class="item" data-value="0">航空运费</option>
+                                            <option class="item" data-value="1">相关运费</option>
+                                            <option class="item" data-value="2">特殊设置</option>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="padding5030">
+                        <div class="w_setbtn">
+                            <button class="ui medium yellow button submit btn-search">查询</button>
+                            <button class="ui medium orange button btn-clear">清空</button>
+                        </div>
+                        <div class="w_setbtn floatLeft">
+                            <button class="ui medium orange button zhid">置顶</button>
+                            <button class="ui medium red button shan">删除</button>
+                            
+                            <!--export-->
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--table-->
+    <div class="overflowXAuto marginbottom45">
+        <table class="ui celled table selled w_table">
+            <thead>
+            <tr class="show_items">
+                <th></th>
+                <th>序号</th>
+                <th>因素</th>
+                <th>是否关联</th>
+                <th>优先级</th>
+                <th>出发/到达</th>
+            </tr>
+            </thead>
+            <tbody class="main_table">
+            <!--循环数据-->
+            </tbody>
+        </table>
+    </div>
+    <div class="pageWarp">
+        <div class="pageBox"></div>
+    </div>
+</div>
+</body>
+</html>
+<script src="../js/jquery.js"></script>
+<script src="../js/semantic.min.js"></script>
+<script src="../js/layer/layer.js"></script>
+<script src="../js/js.js"></script>
+
+<script src="../js/utils/LXHR.js"></script>
+<script src="../js/utils/utils.js"></script>
+<script src="../js/utils/store.js"></script>
+<script src="../js/component/pagination.js"></script>
+
+<script src="../js/excel/excel3.js"></script>
+<script src="../js/yunjiaBest/yunjiaBest.js"></script>

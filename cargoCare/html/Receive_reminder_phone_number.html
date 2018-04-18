@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>基础数据-通用数据字典-预付款管理-接收提醒手机号</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/css.css">
+    <link rel="stylesheet" href="../css/semantic.min.css">
+    <link rel="stylesheet" href="../svg/font.css">
+</head>
+<body>
+  <div class="wym_container">
+    <div>
+      <div class="w_filter">
+        <div class="ui bottom attached tab active" data-tab="first">
+          <form class="ui form">
+            <div class="ui mini form padding10-20">
+              <div class="row">
+                <div class="four fields">
+                  <div class="four wide field">
+                    <label>数据类型</label>
+                    <input type="text" placeholder="数据类型">
+                  </div>
+                  <div class="four wide field">
+                    <label>结算单位</label>
+                    <input type="text" placeholder="数据类型">
+                  </div>
+                </div>
+              </div>
+            </div>
+         <!-- 按钮 -->
+            <div class="padding5030">
+              <div class="w_setbtn">
+                <button class="ui medium yellow button submit">查询</button>
+                <button class="ui medium orange button">重置</button>
+              </div>
+              <div class="w_setbtn floatLeft">
+                <button class="ui medium orange button">录入</button>
+                <button class="ui medium orange button">查看</button>
+                <button class="ui medium teal button">编辑</button>
+                <button class="ui medium red button">删除</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>   
+    </div>
+                <!--table-->    
+    <table class="ui celled table selled w_table">
+        <thead>
+          <tr>
+              <th></th>
+              <th>数据类型</th>
+              <th>结算单位</th>
+              <th>手机号</th>
+              <th>备注</th>
+              <th>增加方式</th>
+              <th>与预付款结算单位关联</th>
+
+          </tr>
+        </thead>
+        <tbody>
+        <!--循环数据-->
+        </tbody>
+    </table>
+  </div>
+
+</div>
+</body>
+</html>
+<script src="../js/jquery.js"></script>
+<script src="../js/semantic.min.js"></script>
+<script src="../js/js.js"></script>
+<script src="../js/more.btn.js"></script>

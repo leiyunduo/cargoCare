@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>基础数据-通用数据字典-影响运价因素</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/css.css">
+    <link rel="stylesheet" href="../css/semantic.min.css">
+    <link rel="stylesheet" href="../svg/font.css">
+</head>
+<body>
+  <div class="wym_container">
+    <div>
+      <div class="w_filter">
+        <div class="ui bottom attached tab active" data-tab="first">
+          <form class="ui form">
+            <div class="ui mini form padding10-20">
+              <div class="row">
+                <div class="three fields">
+                  <div class="four wide field">
+                    <label>数据类型</label>
+                    <input type="text">
+                  </div>
+                  <div class="four wide field">
+                    <label>始发站</label>
+                    <input type="text">
+                  </div>
+                  <div class="four wide field ">
+                    <label>单据类型</label>
+                    <div class="ui dropdown selection">
+                      <input type="hidden" value="0">
+                      <div class="default text">分单</div>
+                      <i class="dropdown icon"></i>
+                      <div class="menu">
+                        <option class="item" data-value="0">分单</option>
+                        <option class="item" data-value="1">运单</option>
+                        <option class="item" data-value="2">邮件</option>
+                        <option class="item" data-value="3">民航快递</option>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+         <!-- 按钮 -->
+            <div class="padding5030">
+              <div class="w_setbtn">
+                <button class="ui medium yellow button submit btn-search">查询</button>
+              </div>
+              <div class="w_setbtn floatLeft">
+                   <button class="ui medium orange button import_settings">导入相关</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>   
+    </div>
+    <!--table-->    
+    <table class="ui celled table selled w_table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>数据类型</th>
+          <th>始发站</th>
+          <th>单据类型</th>
+          <th>因素</th>
+          <th>是否关联</th>
+          <th>优先级</th>
+          <th>出发/到达</th>      
+        </tr>
+      </thead>
+      <tbody>
+      <!--循环数据-->
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
+<script src="../js/jquery.js"></script>
+<script src="../js/semantic.min.js"></script>
+<script src="../js/js.js"></script>
+<script src="../js/more.btn.js"></script>
+<script src="../js/utils/LXHR.js"></script>
+<script src="../js/layer/layer.js"></script>
+<script src="../js/jcsj/alert.js"></script>

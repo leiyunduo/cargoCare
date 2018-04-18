@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>收货-国内-收货主单管理</title>
+	<link rel="stylesheet" href="../css/reset.css">
+	<link rel="stylesheet" href="../css/css.css">
+	<link rel="stylesheet" href="../svg/font.css">
+	<link rel="stylesheet" href="../css/semantic.min.css">
+	<style>
+		.left62 {
+			left: 62.5%;
+		}
+
+		.checkbox-wrap {
+			position: relative;
+		}
+
+		.checkbox-mask {
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 100;
+		}
+
+		.main_order_info {
+			font-size: 16px !important;
+			color: #333 !important;
+		}
+
+		.main_order_info span {
+			margin-right: 20px;
+		}
+
+		.bind_table_wrap {
+			border: 1px solid #ccc;
+			height: 300px;
+		}
+
+		.btnHeight43_1 {
+			height: 33px !important;
+		}
+		.detail_form {
+			position: relative;
+		}
+
+		#menu {
+			position: absolute;
+			left: 100px;
+			top: 100px;
+			padding: 3px 5px;
+			border-radius: 4px;
+			z-index: 999;
+			background-color: #666;
+			color: #fff;
+			cursor: pointer;
+		}
+
+		#menu:hover {
+			background-color: #333;
+			color: #eee;
+		}
+	</style>
+</head>
+
+<body>
+	<iframe style="display:none" id="printIframe"></iframe>
+	<div class="wym_container receive_page main_search" data-type="0">
+		<div>
+			<div class="w_filter">
+				<div class="ui bottom attached tab active" data-tab="first">
+					<form class="ui form">
+						<div class="ui mini form padding10-20 search_item">
+							<div class="row">
+								<div class="four fields">
+									<div class=" four wide field">
+										<label>运单号</label>
+										<div class="two fields relative">
+											<div class="six wide field paddingLeft0">
+												<input type="text" placeholder="3字码" class="order_three_code" name="order_three_code">
+											</div>
+											<span class="dateSymbol left37">-</span>
+											<div class="ten wide field paddingRight0">
+												<input type="text" placeholder="8位数字" class="order_num" name="order_num">
+											</div>
+										</div>
+									</div>
+									<div class="four wide field ">
+										<label>单据类型</label>
+										<div class="ui dropdown selection receipt_type">
+											<input type="hidden" name="receipt_type" value="">
+											<div class="default text">全部</div>
+											<i class="dropdown icon"></i>
+											<div class="menu">
+												<option class="item" data-value="">全部</option>
+												<option class="item" data-value="0">即时</option>
+												<option class="item" data-value="1">事后</option>
+											</div>
+										</div>
+									</div>
+									<div class="four wide field ">
+										<label>制单类型</label>
+										<div class="ui dropdown selection easy_flag">
+											<input type="hidden" name="easy_flag">
+											<div class="default text">全部</div>
+											<i class="dropdown icon"></i>
+											<div class="menu">
+												<option class="item" data-value="">全部</option>
+												<option class="item" data-value="0">正常制单</option>
+												<option class="item" data-value="1">简易制单</option>
+											</div>
+										</div>
+									</div>
+									<div class="four wide field ">
+										<label>出港状态</label>
+										<div class="ui dropdown selection departure_status">
+											<input type="hidden" name="departure_status">
+											<div class="default text">全部</div>
+											<i class="dropdown icon"></i>
+											<div class="menu">
+												<option class="item" data-value="">全部</option>
+												<div class="item" data-value="0">未出港</div>
+												<div class="item" data-value="1">部分出港</div>
+												<div class="item" data-value="2">已出港</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="four fields">
+									<div class="four wide field">
+										<label>始发站</label>
+										<input type="text" name="departure_code" class="departure_code" placeholder="始发站3字码">
+									</div>
+									<div class="four wide field">
+										<label>目的站</label>
+										<input type="text" name="destination_code" class="destination_code" placeholder="目的站3字码">
+									</div>
+									<div class="four wide field">
+										<label>发货人</label>
+										<input type="text" name="sender_code" class="sender_code" placeholder="发货人代码">
+									</div>
+									<div class="four wide field">
+										<label>收货人</label>
+										<input type="text" name="receiver_code" class="receiver_code" placeholder="收货人代码">
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="fields">
+									<div class="eight wide field">
+										<label>开票日期</label>
+										<div class="two fields relative">
+											<div class="eight wide field paddingLeft0">
+												<input type="text" class="billing_time_start" name="billing_time_start" placeholder="开票起始日期 格式为20171231">
+											</div>
+											<span class="dateSymbol">-</span>
+											<div class="eight wide field paddingRight0">
+												<input type="text" placeholder="开票结束日期 格式为20171231" class="billing_time_end" name="billing_time_end">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="padding5030">
+							<div class="w_setbtn">
+								<button class="ui medium yellow button submit btn_search">查询</button>
+								<button class="ui medium blue button addBtn btn_add">添加</button>
+								<button class="ui medium orange button btn_clear_main">清空</button>
+							</div>
+							<div class="w_setbtn floatLeft">
+								<!--<button class="ui medium green button">打印</button>
+								<button class="ui medium green button">标签打印</button>
+								<button class="ui medium orange button">换单</button>-->
+								<button class="ui medium button del grey">作废</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="overflowXAuto marginbottom45" id="print_test">
+			<table class="ui celled striped table selled w_table">
+				<thead>
+					<tr>
+						<th>序号</th>
+						<th>操作</th>
+						<th>运单号</th>
+						<th>始发站</th>
+						<th>目的站</th>
+						<th>单号状态</th>
+						<th>发货人名称</th>
+						<th>收货人名称</th>
+						<th>开票时间</th>
+						<th>收货人电话</th>
+						<th>出港状态</th>
+						<th>对应单号</th>
+						<th>发货人电话</th>
+					</tr>
+				</thead>
+				<tbody class="receive_table">
+
+				</tbody>
+			</table>
+		</div>
+		<!-- 分页 -->
+		<div class="pageWrap">
+			<div class="pageBox receive_main_pageBox">
+
+			</div>
+		</div>
+	</div>
+	<!--添加-->
+	<div class="two_level_menu_wrap">
+		<div class="two_level_menu">
+			<div class="two_level_menu_head">
+				<span class="title">国内收货主单添加</span>
+				<span id="close_two_level_page" class="two_level_menu_head_close icon-cancel-circle"></span>
+			</div>
+			<div class="two_level_menu_body">
+				<!-- 选项卡开始-->
+				<div class="tabNav">
+					<div class="ui tabular menu tabWrap fontSize18 ">
+						<a class="item active detail tabColor">
+							开单明细
+						</a>
+						<a class="item money cost">
+							开单费用
+						</a>
+						<a class="item bind">
+							拼单明细
+						</a>
+						<a class="item volume">
+							体积
+						</a>
+						<a class="item start_arrival">
+							出发/到达信息
+						</a>
+						<a class="item relate_flight">
+							相关航班信息
+						</a>
+					</div>
+				</div>
+				<!-- 选项卡结束-->
+				<!-- 二级菜单盒子开始 -->
+				<div class="tabBodyWrap">
+					<!-- 开单明细开始 -->
+					<div class="active tabBox detail">
+						<form class="ui form add_billing_details detail_form">
+							<div class="ui mini form">
+								<div class="row">
+									<div class="one fields">
+										<div class="sixteen wide field">
+											<!-- <h2 class="ui dividing header fontSize18 marginBottom20">运单信息</h2> -->
+											<div class="ui form">
+												<div class="five fields">
+													<div class="four wide field relative">
+														<label>运单号</label>
+														<div class="two fields relative">
+															<div class="six wide field paddingLeft0">
+																<input type="text" class="inputMustBgColor order_no d_order_code price_about price_must" name="add_waybill_number_three_code"
+																 placeholder="三字码">
+															</div>
+															<span class="dateSymbol left37">-</span>
+															<div class="ten wide field paddingRight0">
+																<input type="text" class="inputMustBgColor order_no d_order_num" name="add_waybill_number_eight_digits" placeholder="8位数字">
+															</div>
+														</div>
+														<i class="must"></i>
+													</div>
+													<div class="two wide field relative">
+														<label>始发站</label>
+														<input type="text" class="inputMustBgColor d_departure_code" placeholder="三字码" name="add_eparture_tation_three_code">
+														<i class="must"></i>
+													</div>
+													<div class="two wide field relative">
+														<label>目的站</label>
+														<input type="text" class="inputMustBgColor d_destination_code price_about price_must" name="add_destination_station_three_code"
+														 placeholder="三字码">
+														<i class="must"></i>
+													</div>
+													<div class="four wide relative field">
+														<label>发货人</label>
+														<div class="two fields relative">
+															<div class="six wide field paddingLeft0">
+																<input type="text" class="d_sender_code" name="add_shipper_code" placeholder="代码">
+															</div>
+															<span class="dateSymbol left37">-</span>
+															<div class="ten wide field paddingRight0">
+																<input type="text" class="d_sender_name" placeholder="发货人">
+															</div>
+														</div>
+													</div>
+													<div class="four wide relative field">
+														<label>收货人</label>
+														<div class="two fields relative">
+															<div class="six wide field paddingLeft0">
+																<input type="text" class="d_receiver_code" name="add_consignee_code" placeholder="代码">
+															</div>
+															<span class="dateSymbol left37">-</span>
+															<div class="ten wide field paddingRight0">
+																<input type="text" placeholder="收货人" class="d_receiver_name" name="receiver_name">
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="two fields">
+										<div class="eight wide field">
+											<!-- <h2 class="ui dividing header fontSize18 marginBottom20">发货人信息</h2> -->
+											<div class="ui form">
+												<div class="marginBottom20">
+													<div class="two fields">
+														<div class="eight wide field">
+															<label>发货人名称</label>
+															<input name="add_shipper_information_name" type="text" class="inputMustBgColor d_sender_name" placeholder="发货人名称">
+															<i class="must"></i>
+														</div>
+														<div class="eight wide field">
+															<label>发货人电话</label>
+															<input type="text" placeholder="发货人电话" class="d_sender_telephone" name="add_shipper_information_tel">
+														</div>
+													</div>
+												</div>
+												<!-- 												<div class="marginBottom20">
+													<div class="two fields">
+														<div class="eight wide field">
+															<label>发货人传真</label>
+															<input type="text" placeholder="发货人传真" class="d_sender_fax" name="add_shipper_information_fax">
+														</div>
+														<div class="four wide field">
+															<label>短信通知</label>
+															<div class="ui dropdown selection d_sender_sms_notification">
+																<input type="hidden" name="sender_sms_notification" value='0'>
+																<div class="default text ">否</div>
+																<i class="dropdown icon"></i>
+																<div class="menu">
+																	<div class="item" data-value="0">否</div>
+																	<div class="item" data-value="1">是</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div> -->
+												<div class="marginBottom20">
+													<div class="one fields">
+														<div class="sixteen wide field">
+															<label>发货人地址</label>
+															<input type="text" placeholder="发货人地址" class="inputMustBgColor d_sender_address" name="add_shipper_information_address">
+															<i class="must"></i>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="eight wide field">
+											<!-- <h2 class="ui dividing header fontSize18 marginBottom20">收货人信息</h2> -->
+											<div class="ui form">
+												<div class="marginBottom20">
+													<div class="two fields">
+														<div class="eight wide field">
+															<label>收货人名称</label>
+															<input type="text" name="add_consignee_information_name" class="inputMustBgColor d_receiver_name" placeholder="收货人名称">
+															<i class="must"></i>
+														</div>
+														<div class="eight wide field">
+															<label>收货人电话</label>
+															<input type="text" placeholder="收货人电话" class="d_receiver_telephone" name="add_consignee_information_tel">
+														</div>
+													</div>
+												</div>
+												<!-- 												<div class="marginBottom20">
+													<div class="three fields">
+														<div class="eight wide field">
+															<label>收货人传真</label>
+															<input type="text" placeholder="收货人传真" name="add_consignee_information_fax" class="d_receiver_fax">
+														</div>
+														<div class="four wide field">
+															<label>短信通知</label>
+															<div class="ui dropdown selection d_receiver_sms_notification">
+																<input type="hidden" name="receiver_sms_notification" value="0">
+																<div class="default text">否</div>
+																<i class="dropdown icon"></i>
+																<div class="menu">
+																	<div class="item" data-value="0">否</div>
+																	<div class="item" data-value="1">是</div>
+																</div>
+															</div>
+														</div>
+														<div class="four wide field">
+															<label>提货方式</label>
+															<div class="ui dropdown selection d_delivery_mode">
+																<input type="hidden" name="delivery_mode" value="0">
+																<div class="default text">配送</div>
+																<i class="dropdown icon"></i>
+																<div class="menu">
+																	<div class="item" data-value="0">配送</div>
+																	<div class="item" data-value="1">自提</div>
+																	<div class="item" data-value="2">中转</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div> -->
+												<div class="marginBottom20">
+													<div class="fields">
+														<div class="twelve wide field">
+															<label>收货人地址</label>
+															<input type="text" placeholder="收货人地址" class="inputMustBgColor d_receiver_address" name="add_consignee_information_address">
+															<i class="must"></i>
+														</div>
+														<div class="four wide field">
+															<label>提货方式</label>
+															<div class="ui dropdown selection d_delivery_mode">
+																<input type="hidden" name="delivery_mode" value="0">
+																<div class="default text">配送</div>
+																<i class="dropdown icon"></i>
+																<div class="menu">
+																	<div class="item" data-value="0">配送</div>
+																	<div class="item" data-value="1">自提</div>
+																	<div class="item" data-value="2">中转</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="one fields">
+										<div class="sixteen wide field">
+											<!-- <h2 class="ui dividing header fontSize18 marginBottom20">货物信息</h2> -->
+											<div class="ui form">
+												<div class="marginBottom20">
+													<div class="eight fields">
+														<div class="field">
+															<label>品名</label>
+															<div class="two fields relative">
+																<div class="six wide field paddingLeft0">
+																	<input type="text" class="d_product_no" placeholder="代码" name="add_name_code_first">
+																</div>
+																<span class="dateSymbol left37">-</span>
+																<div class="ten wide field">
+																	<input type="text" class="d_product_name price_about" name="add_name_chinese_second" placeholder="品名中文名">
+																</div>
+															</div>
+														</div>
+														<div class="field">
+															<label>货物类别</label>
+															<div class="two fields relative">
+																<div class="six wide field paddingLeft0">
+																	<input type="text" class="d_product_category_code price_about" placeholder="代码" name="add_goods_class_code_first">
+																</div>
+																<span class="dateSymbol left37">-</span>
+																<div class="ten wide field paddingRight0">
+																	<input type="text" class="d_product_category price_about" name="product_category" placeholder="货物类别中文名">
+																</div>
+															</div>
+														</div>
+														<div class="field">
+															<label>包装</label>
+															<div class="two fields relative">
+																<div class="six wide field paddingLeft0">
+																	<input type="text" placeholder="代码" class="d_packaging_code" name="add_packing_code_first">
+																</div>
+																<span class="dateSymbol left37">-</span>
+																<div class="ten wide field">
+																	<input type="text" class="d_packaging_name" name="add_packing_code_second" placeholder="包装中文名">
+																</div>
+															</div>
+														</div>
+														<div class="field">
+															<label>自分类别</label>
+															<div class="two fields relative">
+																<div class="six wide field paddingLeft0">
+																	<input type="text" placeholder="代码" class="d_your_category_code price_about" name="your_category_code">
+																</div>
+																<span class="dateSymbol left37">-</span>
+																<div class="ten wide field">
+																	<input type="text" class="d_your_category price_about" name="your_category" placeholder="自分类别中文名">
+																</div>
+															</div>
+														</div>
+														<div class="field ">
+															<label>出发优先级</label>
+															<div class="ui dropdown selection d_departure_priority">
+																<input type="hidden" name="departure_priority" value="0">
+																<div class="default text">普通</div>
+																<i class="dropdown icon"></i>
+																<div class="menu">
+																	<div class="item" data-value="0">普通</div>
+																	<div class="item" data-value="1">优先</div>
+																</div>
+															</div>
+														</div>
+														<div class="field">
+															<label>商品代码</label>
+															<input type="text" placeholder="商品代码" class="d_product_code price_about" name="add_commodity_code_first">
+														</div>
+														<div class="field ">
+															<label>国内/国际</label>
+															<div class="ui dropdown selection d_is_domestic">
+																<input type="hidden" name="" value="0">
+																<div class="default text">国内</div>
+																<i class="dropdown icon"></i>
+																<div class="menu">
+																	<div class="item" data-value="0">国内</div>
+																	<div class="item" data-value="1">国际</div>
+																</div>
+															</div>
+														</div>
+														<div class="field ">
+															<label>简易制单</label>
+															<div class="ui dropdown selection d_easy_flag">
+																<input type="hidden" name="" value="0">
+																<div class="default text">否</div>
+																<i class="dropdown icon"></i>
+																<div class="menu">
+																	<div class="item" data-value="0">否</div>
+																	<div class="item" data-value="1">是</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<!-- 												<div class="marginBottom20">
+													<div class="four fields">
+
+														
+													</div>
+												</div> -->
+												<div class="marginBottom20">
+													<div class="seven fields">
+														<div class="three wide field">
+															<label>出发操作点</label>
+															<input type="text" placeholder="出发操作点" class="d_starting_point_operation">
+														</div>
+														<div class="four wide field">
+															<label>第一程</label>
+															<div class="eight fields relative">
+																<div class="eight wide field paddingLeft0">
+																	<input type="text" placeholder="三字码" class="price_about d_first_transfer_code" name="add_first_course_code">
+																</div>
+																<span class="dateSymbol left50">-</span>
+																<div class="eight wide field paddingRight0">
+																	<input type="text" placeholder="目的站" class="price_about d_first_transfer_name" name="first_transfer_name">
+																</div>
+															</div>
+														</div>
+														<div class="two wide field">
+															<label>空运中转</label>
+															<div class="ui dropdown selection d_air_transit price_about">
+																<input type="hidden" name="air_transit" value="0">
+																<div class="default text">否</div>
+																<i class="dropdown icon"></i>
+																<div class="menu">
+																	<div class="item" data-value="0">否</div>
+																	<div class="item" data-value="1">是</div>
+																</div>
+															</div>
+														</div>
+														<div class="four wide field">
+															<label>第二程</label>
+															<div class="eight fields relative">
+																<div class="eight wide field paddingLeft0">
+																	<input type="text" placeholder="三字码" class="d_second_transfer_code" name="add_second_course_code">
+																</div>
+																<span class="dateSymbol left50">-</span>
+																<div class="eight wide field paddingRight0">
+																	<input type="text" class="d_second_transfer_name" name="second_transfer_name" placeholder="目的站">
+																</div>
+															</div>
+														</div>
+														<div class="three wide field">
+															<label>中转理货单位</label>
+															<input type="text" class="d_transshipment_unit" name="transshipment_unit" placeholder="中转理货单位">
+														</div>
+														<div class="four wide field">
+															<label>预计航班日期</label>
+															<input type="text" placeholder="预计航班日期" class="detail_flight_time d_expected_flight_time cyanBg flight_input" name="add_estimated_date_flight">
+														</div>
+														<div class="four wide field">
+															<label>预计航班号</label>
+															<div class="two fields relative">
+																<div class="eight wide field paddingLeft0">
+																	<input type="text" placeholder="二字代码" class="inputMustBgColor detail_flight_no d_expected_two_flight_code" name="add_scheduled_flight_number_code">
+																</div>
+																<span class="dateSymbol left50">-</span>
+																<div class="eight wide field paddingRight0">
+																	<input type="text" class="inputMustBgColor d_expected_flight_num detail_flight_num price_about" name="add_scheduled_flight_number_number"
+																	 placeholder="航班号">
+																</div>
+															</div>
+															<i class="must"></i>
+														</div>
+													</div>
+												</div>
+												<div class="marginBottom20">
+													<div class="four fields">
+														<div class="two wide field">
+															<label>件数</label>
+															<input type="text" class="inputMustBgColor d_quantity d_piece price_about price_must" name="add_jianshu_number" placeholder="件数(请输入整数)">
+															<i class="must"></i>
+														</div>
+														<div class="two wide field">
+															<label>实重(kg)</label>
+															<input type="text" class="inputMustBgColor detail_net_weight d_net_weight" name="add_actual_weight" placeholder="实重(请输入数字)">
+															<i class="must"></i>
+														</div>
+														<div class="two wide field">
+															<label>体积(m3)</label>
+															<input type="text" class="tijifacus detail_net_volume d_volume volume_input cyanBg" name="add_volume" placeholder="体积(请输入数字)">
+														</div>
+														<div class="two wide field">
+															<label>计重(kg)</label>
+															<input type="text" class="inputMustBgColor detail_weight d_weight price_about price_must" name="add_calculated_weight" placeholder="计重(请输入数字)">
+															<i class="must"></i>
+														</div>
+														<div class="eight wide field">
+															<label>价种</label>
+															<div class="two fields relative">
+																<div class="ten wide field paddingLeft0">
+																	<div class="ui dropdown selection d_price_species_name price_species cyanBg price_input">
+
+																	</div>
+																</div>
+																<span class="dateSymbol left62">-</span>
+																<div class="six wide field paddingRight0">
+																	<input type="text" placeholder="价种代码" class="d_price_species_code" name="add_price_category_second">
+																</div>
+															</div>
+														</div>
+														<div class="two wide field">
+															<!-- 原费率 -->
+															<label>开票价</label>
+															<input type="text" class="inputMustBgColor d_invoice_price" name="add_rate" placeholder="开票价">
+															<i class="must"></i>
+														</div>
+														<div class="four wide field">
+															<label>结算单位</label>
+															<div class="two fields relative">
+																<div class="six wide field paddingLeft0">
+																	<input type="text" placeholder="代码" class="d_clearing_unit_code" name="add_settlement_unit_code_first">
+																</div>
+																<span class="dateSymbol left37">-</span>
+																<div class="ten wide field">
+																	<input type="text" class="d_clearing_unit" placeholder="结算单位" name="add_settlement_unit_chinese_second">
+																</div>
+															</div>
+														</div>
+														<!-- 														<div class="two wide field">
+															<label>折扣</label>
+															<input type="text" class="d_discount" name="add_discount" placeholder="折扣">
+														</div> -->
+														<div class="two wide field">
+															<label>保险价值</label>
+															<input type="text" placeholder="保险价值" class="d_insurance_value">
+														</div>
+														<div class="two wide field">
+															<label>申明价值</label>
+															<input type="text" placeholder="申明价值" class="d_declared_value">
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="one fields">
+										<div class="sixteen wide field">
+											<!-- <h2 class="ui dividing header fontSize18 marginBottom20">承运人信息</h2> -->
+											<div class="ui form">
+												<!-- 												<div class="marginBottom20">
+													<div class="one fields">
+														<div class="sixteen wide field">
+															<label>其他储运备注</label>
+															<input type="text" placeholder="其他储运备注" class="d_other_storage_remark">
+														</div>
+													</div>
+												</div> -->
+												<!-- 												<div class="marginBottom20">
+													<div class="one fields">
+														<div class="sixteen wide field">
+															<label>结算备注</label>
+															<input type="text" placeholder="结算备注" class="d_billing_remark">
+														</div>
+													</div>
+												</div> -->
+												<!-- 												<div class="marginBottom20">
+													<div class="three fields">
+
+
+													</div>
+												</div> -->
+												<div class="marginBottom20">
+													<div class="four fields">
+														<div class="four wide field">
+															<label>对应单号</label>
+															<input type="text" placeholder="对应分单单号" class="d_correspond_order_no cyanBg bind_input">
+														</div>
+														<div class="four wide field">
+															<label>承运人储运备注</label>
+															<input type="text" placeholder="承运人储运备注" class="d_carrier_storage_remark">
+														</div>
+														<div class="four wide field">
+															<label>其他储运备注</label>
+															<input type="text" placeholder="其他储运备注" class="d_other_storage_remark">
+														</div>
+														<div class="four wide field">
+															<label>结算备注</label>
+															<input type="text" placeholder="结算备注" class="d_billing_remark">
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="one fields">
+										<div class="sixteen wide field">
+											<!-- <h2 class="ui dividing header fontSize18 marginBottom20">开单信息</h2> -->
+											<div class="ui form ">
+												<!-- 												<div class="marginBottom20">
+													<div class="three fields">
+														<div class="field">
+															<label>付款方式</label>
+															<div class="ui dropdown selection d_payment_method">
+																<input type="hidden" name="payment_method" value="0">
+																<div class="default text">现金</div>
+																<i class="dropdown icon"></i>
+																<div class="menu">
+																	<div class="item" data-value="0">现金</div>
+																	<div class="item" data-value="1">预付</div>
+																</div>
+															</div>
+														</div>
+														<div class="field ">
+															<label>单据类型</label>
+															<div class="ui dropdown selection d_receipt_type">
+																<input type="hidden" name="receipt_type" value="0">
+																<div class="default text">即时</div>
+																<i class="dropdown icon"></i>
+																<div class="menu">
+																	<div class="item" data-value="0">即时</div>
+																	<div class="item" data-value="1">事后</div>
+																</div>
+															</div>
+														</div>
+														<div class="field">
+															<label>状态</label>
+															<div class="ui dropdown selection d_state">
+																<input type="hidden" name="state" value="1">
+																<div class="default text">已使用</div>
+																<i class="dropdown icon"></i>
+																<div class="menu">
+																	<div class="item" data-value="1">已使用</div>
+																	<div class="item" data-value="0">未使用</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div> -->
+												<div class="marginBottom20">
+													<div class="five fields">
+														<div class="field">
+															<label>付款方式</label>
+															<div class="ui dropdown selection d_payment_method">
+																<input type="hidden" name="payment_method" value="0">
+																<div class="default text">现金</div>
+																<i class="dropdown icon"></i>
+																<div class="menu">
+																	<div class="item" data-value="0">现金</div>
+																	<div class="item" data-value="1">预付</div>
+																</div>
+															</div>
+														</div>
+														<div class="field relative">
+															<label>应收核对情况</label>
+															<input type="text" placeholder="应收核对情况" class="d_receivable_check">
+														</div>
+														<div class="field relative">
+															<label>应付核对情况</label>
+															<input type="text" placeholder="应付核对情况" class="d_handle_check">
+														</div>
+														<div class="field relative">
+															<label>开票时间</label>
+															<input type="text" class="d_billing_time d_create_time" name="add_billing_time" placeholder="开票时间">
+														</div>
+														<div class="field relative">
+															<label>开票人</label>
+															<input type="text" class="d_issuer" name="add_drawer" placeholder="开票人">
+														</div>
+														<div class="field relative">
+															<label>开票地点</label>
+															<div class="ui dropdown selection d_billing_location">
+																<input type="hidden" value='市内营业部'>
+																<div class="default text">市内营业部</div>
+																<i class="dropdown icon"></i>
+																<div class="menu">
+																	<div class="item" data-value="市内营业部">市内营业部</div>
+																	<div class="item" data-value="机场营业部">机场营业部</div>
+																	<div class="item" data-value="保定营业部">保定营业部</div>
+																</div>
+															</div>
+														</div>
+														<div class="field relative">
+															<label>修改时间</label>
+															<input type="text" class="d_update_time" name="add_modification_time" placeholder="修改时间">
+														</div>
+														<div class="field relative">
+															<label>修改人</label>
+															<input type="text" class="d_update_person" name="add_modifier" placeholder="修改人">
+														</div>
+													</div>
+												</div>
+												<div class="marginBottom20">
+													<div class="fields">
+														<!-- <div class="sixteen wide field">
+															<label>客服记录</label>
+															<textarea rows="2" class="d_service_record detail_service_record cyanBg custom_input" name="service_record"></textarea>
+														</div> -->
+														<div class="sixteen wide field">
+															<label>客服记录</label>
+															<input type="text" class="d_service_record detail_service_record cyanBg custom_input" name="service_record">
+														</div>
+													</div>
+												</div>
+												<div class="padding5030">
+													<div class="flexCenter">
+														<button class="ui medium green button print_about print_report">打单</button>
+														<button class="ui medium green button print_about print_tab">打印标签</button>
+														<button class="ui medium olive button tianjia btn_save">保存</button>
+														<button class="ui medium red button btn_clear">清空</button>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+					<!-- 开单明细结束 -->
+					<!-- 开单费用开始 -->
+					<div class="tabBox cost">
+						<div class="ui mini form">
+							<div class="row">
+								<div class="one fields">
+									<div class="sixteen wide field">
+										<h2 class="ui dividing header fontSize18 marginBottom20">费用</h2>
+										<div class="overflowXAuto">
+											<table class="ui celled table selled w_table">
+												<thead>
+													<tr>
+														<th>序号</th>
+														<th>费用名称</th>
+														<th>付款单位</th>
+														<th>收款单位</th>
+														<th>关联性</th>
+														<th>费率</th>
+														<th>取舍方式</th>
+														<th>绝对费用</th>
+														<th>实际费用</th>
+														<th>锁定</th>
+														<th>备注</th>
+														<th>影响最低应收总费用</th>
+														<th>操作</th>
+													</tr>
+												</thead>
+												<tbody class="cost_info_table">
+													<!--循环数据-->
+												</tbody>
+											</table>
+										</div>
+										<div class="padding5030">
+											<div class="flexCenter">
+												<button class="ui medium orange button sure_and_back_detail" data-type="price">保存并返回开单明细</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="one fields">
+									<div class="sixteen wide field">
+										<h2 class="ui dividing header fontSize18 marginBottom20">按结算单位汇总</h2>
+										<table class="ui celled table selled w_table">
+											<thead>
+												<tr>
+													<th>结算单位</th>
+													<th>类型</th>
+													<th>费用小计</th>
+													<th>差额</th>
+													<th>已收(付)</th>
+													<th>销账人</th>
+													<th>核对人</th>
+													<th>收付款明细</th>
+												</tr>
+											</thead>
+											<tbody>
+												<!--循环数据-->
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 开单结束结束 -->
+					<!-- 拼单明细开始 -->
+					<div class="tabBox bind">
+						<div class="ui dividing header marginBottom20 main_order_info">
+							<span class="bind_order_no">主单号: </span>
+							<span class="bind_sum_piece">已拼总件数: 0</span>
+							<span class="bind_sum_weight">已拼总重量: 0</span>
+							<span class="bind_sum_volume">已拼总体积: 0</span>
+						</div>
+						<div class="width47">
+							<form class="ui form ">
+								<div class="ui mini form ">
+									<div class="row">
+										<div class="three fields">
+											<div class="six wide field">
+												<label>开票地点</label>
+												<div class="ui dropdown selection W_label billingLocation">
+													<input type="hidden" value='市内营业部'>
+													<div class="default text">市内营业部</div>
+													<i class="dropdown icon"></i>
+													<div class="menu">
+														<div class="item" data-value="市内营业部">市内营业部</div>
+														<div class="item" data-value="机场营业部">机场营业部</div>
+														<div class="item" data-value="保定营业部">保定营业部</div>
+													</div>
+												</div>
+											</div>
+											<div class="four wide field">
+												<button class="ui medium yellow button btnHeight43_1 W_BtnFind search_select_btn">查询</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</form>
+
+							<h2 class="ui dividing header fontSize18 marginBottom20">可选分单</h2>
+							<div class="bind_table_wrap overflowXAuto overflowYAuto">
+								<table class="ui celled table selled w_table marginBottom30">
+									<thead>
+										<tr>
+											<th></th>
+											<th>序号</th>
+											<th>单号</th>
+											<th>终点</th>
+											<th>总件数</th>
+											<th>实重</th>
+											<th>已拼件数</th>
+											<th>发货人</th>
+											<th>发货去向</th>
+											<th>品名</th>
+											<th>预计航班</th>
+										</tr>
+									</thead>
+									<tbody class="w_table_Cont select_bill_table">
+
+									</tbody>
+									<!-- <tfoot>
+										<tr>
+											<th colspan="3">
+												<div class="ui pagination menu">
+													<a class="icon item">
+														< </a>
+															<a class="item">1</a>
+															<a class="item">2</a>
+															<a class="item">3</a>
+															<a class="item">4</a>
+															<a class="icon item ">
+                                                >
+                                            </a>
+												</div>
+											</th>
+										</tr>
+									</tfoot> -->
+								</table>
+							</div>
+						</div>
+						<div class="width6">
+							<i class="icon-circle-right selectBill"></i>
+							<i class="icon-circle-left cancelSelectBill"></i>
+						</div>
+						<div class="width47">
+							<form class="ui form ">
+								<div class="ui mini form ">
+									<div class="row">
+										<div class="two fields">
+											<div class=" eight wide field relative">
+												<label>分单号(直接输入可选分单号进行添加)</label>
+												<div class="two fields relative">
+													<div class="six wide field paddingLeft0">
+														<input type="text" placeholder="3字码" class="bind_order_code">
+													</div>
+													<span class="dateSymbol left37">-</span>
+													<div class="ten wide field paddingRight0">
+														<input type="text" placeholder="8位数字" class="bind_order_num">
+													</div>
+												</div>
+											</div>
+											<div class="eight wide field">
+												<button class="ui medium yellow button btnHeight43_1 btnHeight_find add_by_order">添加</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</form>
+							<h2 class="ui dividing header fontSize18 marginBottom20">已选分单</h2>
+							<div class="overflowXAuto overflowYAuto bind_table_wrap">
+								<table class="ui celled table selled w_table marginBottom30">
+									<thead>
+										<tr>
+											<th></th>
+											<th>序号</th>
+											<th>单号</th>
+											<th>终点</th>
+											<th>件数</th>
+											<th>实重</th>
+											<th>体积</th>
+											<th>发货人</th>
+											<th>操作人</th>
+										</tr>
+									</thead>
+									<tbody class="w_table_Cont2 selected_bill_table">
+
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="padding5030">
+							<div class="flexCenter">
+								<button class="ui medium orange button M_confirm sure_and_back_detail bind_back_detail" data-type="bind">保存并返回开单明细</button>
+							</div>
+						</div>
+					</div>
+					<!-- 拼单明细结束 -->
+					<!-- 体积开始 -->
+					<div class="tabBox volume">
+						<div class="ui mini form">
+							<div class="row">
+								<div class="one fields">
+									<table class="ui celled table selled w_table">
+										<thead>
+											<tr>
+												<th>序号</th>
+												<th>长(cm)</th>
+												<th>宽(cm)</th>
+												<th>高(cm)</th>
+												<th>件数</th>
+												<th>体积(m3)</th>
+												<th>体积重量(kg)</th>
+												<th>操作</th>
+											</tr>
+										</thead>
+										<tbody class="WW_Tbody volume_info_table">
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="row">
+								<div class="padding5030">
+									<div class="flexCenter">
+										<button class="ui medium orange button sure_and_back_detail" data-type="volume">确认并返回开单明细</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 体积结束 -->
+					<!-- 出发/到达信息开始 -->
+					<div class="tabBox start_arrival">
+						<div class="ui mini form">
+							<div class="row">
+								<div class="one fields">
+									<div class="sixteen wide field">
+										<h2 class="ui dividing header fontSize18 marginBottom20">出发情况</h2>
+										<table class="ui celled table selled">
+											<thead>
+												<tr>
+													<th>序号</th>
+													<th>支出单号</th>
+													<th>航班号</th>
+													<th>起点</th>
+													<th>终点</th>
+													<th>支出单件数</th>
+													<th>销售单件数</th>
+													<th>支出单收货人</th>
+													<th>运输方式</th>
+													<th>开票日期</th>
+													<th>开票人</th>
+												</tr>
+											</thead>
+											<tbody class="start_info_table">
+												<!-- 出发情况 -->
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="one fields">
+									<div class="sixteen wide field">
+										<h2 class="ui dividing header fontSize18 marginBottom20">客服记录</h2>
+										<table class="ui celled table selled w_table">
+											<thead>
+												<tr>
+													<th>序号</th>
+													<th>状态</th>
+													<th>内容</th>
+													<th>录入人</th>
+													<th>录入人日期</th>
+													<th>操作</th>
+												</tr>
+											</thead>
+											<tbody class="service_info_table">
+
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<div class="padding5030">
+									<div class="flexCenter">
+										<button class="ui medium orange button _back sure_and_back_detail" data-type="custom">保存并返回开单明细</button>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="one fields">
+									<div class="sixteen wide field">
+										<h2 class="ui dividing header fontSize18 marginBottom20">到达情况</h2>
+										<table class="ui celled table selled w_table">
+											<thead>
+												<tr>
+													<th>序号</th>
+													<th>签收人</th>
+													<th>签收件数</th>
+													<th>签收时间</th>
+													<th>签收备注</th>
+													<th>录改人</th>
+													<th>录改日期</th>
+													<th>操作</th>
+												</tr>
+											</thead>
+											<tbody class="arrival_info_table">
+
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<div class="padding5030">
+									<div class="flexCenter">
+										<button class="ui medium orange button _back sure_and_back_detail" data-type="custom">保存并返回开单明细</button>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<!-- 出发/到达信息结束 -->
+					<!-- 相关航班信息开始 -->
+					<div class="tabBox relate_flight">
+						<div class="ui mini form">
+							<div class="row">
+								<div class="overflowXAuto">
+									<table class="ui celled table selled w_table">
+										<thead>
+											<tr>
+												<th></th>
+												<th>序号</th>
+												<th>出发日期</th>
+												<th>航班号</th>
+												<th>起飞机场</th>
+												<th>起飞</th>
+												<th>计飞</th>
+												<th>降落机场</th>
+												<th>降落</th>
+												<th>计降</th>
+												<th>有货</th>
+												<th>机型</th>
+												<th>客货机</th>
+												<th>可用业载</th>
+												<th>实际载量</th>
+												<th>订舱载量</th>
+												<th>截载时间</th>
+												<th>最后修改人</th>
+												<th>数据来源</th>
+												<th>状态</th>
+											</tr>
+										</thead>
+										<tbody class="relate_flight_info_table">
+
+										</tbody>
+									</table>
+								</div>
+								<div class="pageWrapNoBottom">
+									<div class="pageBox relate_flight_info_pageBox">
+
+									</div>
+								</div>
+								<div class="padding5030">
+									<div class="flexCenter">
+										<button class="ui medium orange button M_confirm sure_and_back_detail" data-type="flight">保存并返回开单明细</button>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="one fields">
+									<div class="sixteen wide field">
+										<h2 class="ui dividing header fontSize18 marginBottom20">订舱情况</h2>
+										<table class="ui celled table selled w_table">
+											<thead>
+												<tr>
+													<th>订舱号</th>
+													<th>发货人</th>
+													<th>品名</th>
+													<th>批复重量</th>
+													<th>实际出发重量</th>
+													<th>实发比率</th>
+													<th>订舱人</th>
+													<th>订舱电话</th>
+													<th>批复件数</th>
+													<th>批复体积</th>
+													<th>批复人</th>
+													<th>批复日期</th>
+												</tr>
+											</thead>
+											<tbody class="abourbook booking_info_table">
+												<!--循环数据-->
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 相关航班信息结束 -->
+				</div>
+				<!-- 二级菜单盒子结束 -->
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
+<script src="../js/jquery.js"></script>
+<script src="../js/semantic.min.js"></script>
+<script src="../js/layer/layer.js"></script>
+<script src="../js/js.js"></script>
+
+<script src="../js/receiving_management/LodopFuncs.js"></script>
+<script src="../js/utils/LXHR.js"></script>
+<script src="../js/utils/count.js"></script>
+<script src="../js/utils/utils.js"></script>
+
+<script src="../js/component/pagination.js"></script>
+<script src="../js/component/costInfo.js"></script>
+<script src="../js/component/customInfo.js"></script>
+<script src="../js/component/volumeInfo.js"></script>
+<script src="../js/component/arriveInfo.js"></script>
+<script src="../js/component/flightInfo.js"></script>
+
+<script src="../js/receiving_management/config.js"></script>
+<script src="../js/receiving_management/search.js"></script>
+<script src="../js/receiving_management/price.js"></script>
+<script src="../js/receiving_management/add_edit.js"></script>
+<script src="../js/receiving_management/tabs.js"></script>
+<script src="../js/receiving_management/main_bind.js"></script>
+<script src="../js/receiving_management/print.js"></script>
+<script src="../js/receiving_management/jumpPage.js"></script>
+
+<script src="../js/receiving_management/validate.js"></script>
